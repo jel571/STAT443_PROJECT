@@ -24,4 +24,8 @@ Uniform:
 
 1. [R classification tutorial](https://cran.r-project.org/web/packages/keras/vignettes/tutorial_basic_classification.html)
 2. Some review paper of classification approaches
+  2.1. [Artificial Neural Networks in Image Processing for Early Detection of Breast Cancer] http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf
+  2.2 [Fixed point optimization of deep convolutional neural networks for object recognition] (https://ieeexplore.ieee.org/abstract/document/7178146)
 3. [3B1B video series on neural networks](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+4. fashion mnist rundown (https://github.com/zalandoresearch/fashion-mnist/blob/master/README.md) also exists on the arxiv; link leads to same md (https://arxiv.org/abs/1708.07747)
+5. 
