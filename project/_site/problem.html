@@ -315,8 +315,65 @@ $(document).ready(function () {
 </div>
 
 
-<div id="problem" class="section level1">
-<h1>Problem</h1>
+<p>Neural networks are a class of algorithms that are used to recognize patterns and learn representations of given data examples with the aim to learn a mapping between an input and an output. There are multiple techniques for training neural networks such as supervised, semi-supervised, and unsupervised. The technique we focused on using is supervised learning.</p>
+<p>Supervised learning aims to train a neural network to perform a specific task, such as classification, object detection, translation, etc, by passing a sample data point through the neural network and providing the answer at the same time. This way, the network has the opportunity to learn by computing the loss (difference) between the given output (correct answer) and its own (temporarily incorrect) output.</p>
+<p>One of the problems a neural network can solve is image classification. There are different types of classification that a neural network can perform, such as binary classification - only two possible classes - or classification of multiple options - more than two possible classes. Classification of multiple options can be applied to multiple problems such as classifying digits from 0 to 9, checking whether an image contains a cat or not, etc. For this assignment, the group focused on classifying images of different clothing types as represented in the MNIST dataset.</p>
+<div id="fashion-mnist-dataset" class="section level2">
+<h2>Fashion MNIST dataset</h2>
+<p>The Fashion MNIST data set supplied by the Keras R package provides 70000 grayscale, <span class="math inline">\(28 \times 28\)</span> pixel photos of clothing items that fall into one of ten classes:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>T-shirt/top</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Trouser</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Pullover</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Dress</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Coat</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Sandal</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Shirt</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Sneaker</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>Bag</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Ankle boot</td>
+</tr>
+</tbody>
+</table>
+<p>The pixels are then flattened into a <span class="math inline">\(784 \times 1\)</span> image which is then converted into a numerical observation by attaining the pixel intensity values (which will range from 0 to 255).</p>
+<p>You can find more information about the Fashion MNIST dataset <a href="https://github.com/zalandoresearch/fashion-mnist">here</a>.</p>
+<p>Neural networking, a supervised learning technique, aims to classify an observation into one of <span class="math inline">\(k\)</span> pre-specified groups given an extremely large vector of predictor variables (<span class="math inline">\(\vec{x}\)</span>). Using this method, we can build an algorithm that will be able to classify a random image (not trained upon) with its pre-specified class. Using our large vector of pixel intensity values that represent each image, we can partition the data set into training and testing sets. After the neural network uses the training data set to create its algorithm, we can verify its validity by running our testing observations through the network and calculate the loss function.</p>
 </div>
 
 
