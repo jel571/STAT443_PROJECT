@@ -4,12 +4,15 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
+    - text: "Presentation"
       menu:
-        - text: "Menu"
-        - text: "Page 1"
+        - text: "Problem"
           href: problem.html
-        - text: "Page 2"
-          href: problem.html
-    - text: "Problem"
-      href: problem.html
+        - text: "Architectures"
+          href: architectures.html
+        - text: "Linear algebra"
+          href: linear_algebra.html
+        - text: "Comparison"
+          href: comparison.html
+        - text: "Applicability"
+          href: applicability.html
