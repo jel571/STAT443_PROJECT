@@ -1,9 +1,29 @@
 ---
-title: "My Website"
+title: "Introduction"
 ---
 
-Hello, Website!
+This website was created to host a presentation for STAT443 - Linear Statistical
+Models - a University of Saskatchewan Statistics course. One of the assignments
+for the class encouraged students to explore different Statistics topics such
+as:
 
-For more information about simple R Markdown websites, please read the documentation at https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html.
 
-Please also note that simple R Markdown sites are _not_ based on **blogdown**. They are probably good for websites with only a few Rmd documents. For larger-scale and more sophisticated websites (such as blogs), you may want to use **blogdown** instead: https://github.com/rstudio/blogdown.
+1. Bayesian Linear Regression;
+1. Decision Tree;
+1. Clustering Methods (K-Means);
+1. Support Vector Machines (SVM);
+1. A topic related to Machine Learning.
+
+Our group - Jennifer Lam, Braedan Walker, and Flaviu Vadan - decided to practice
+using the R Keras library for classifying images of different clothing items.
+The presentation is available on this website and is broken down by several
+categories:
+
+
+1. An outline of the problem the group attempted to solve;
+1. An overview of different neural network architectures;
+1. A section on the linear algebra behind simple/fully-connected neural
+networks;
+1. A comparison against other methods identified in the literature;
+1. Applicability of the group's approach towards classifying clothing items to
+other areas.

@@ -1,6 +1,6 @@
-name: "our-Website"
+name: "stat443_homework_2"
 navbar:
-  title: "Our Website"
+  title: "STAT443 - Homework 2"
   left:
     - text: "Home"
       href: index.html
