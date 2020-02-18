@@ -1,8 +1,15 @@
-name: "my-website"
+name: "our-Website"
 navbar:
-  title: "My Website"
+  title: "Our Website"
   left:
     - text: "Home"
       href: index.html
     - text: "About"
-      href: about.html
+      menu:
+        - text: "Menu"
+        - text: "Page 1"
+          href: problem.html
+        - text: "Page 2"
+          href: problem.html
+    - text: "Problem"
+      href: problem.html
