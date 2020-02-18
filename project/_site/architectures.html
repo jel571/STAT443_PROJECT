@@ -315,10 +315,42 @@ $(document).ready(function () {
 </div>
 
 
-<div class="figure">
-<img src="ANN.jpg" alt="image of ANN diagram" />
-<p class="caption">image of ANN diagram</p>
-</div>
+<p>Multiple types of neural network architectures have been proposed. Some examples are:</p>
+<ol style="list-style-type: decimal">
+<li>Recurrent neural networks - networks that have recurrent connections between nodes;</li>
+<li>Convolution neural networks - networks that replace the dot product with a convolution operation that summarizes multiple elements from an input, e.g pixels;</li>
+<li>Capsule networks - use capsules, which are collections of nodes, instead of independent network nodes;</li>
+<li><a href="https://www.asimovinstitute.org/neural-network-zoo/">Others</a>.</li>
+</ol>
+<p>The group decided to use a simple feed-forward neural network, which uses nodes that are fully connected between layers. The decision to use a simple network is two-fold: 1. Simplicity - although the model itself can be come complex due to the high number of parameters, the group does not have to be concerned with models that have very complex architectures; 2. Ease of implementation - a neural network that follows a simple architecture is typically easier to implement by comparison to networks that have skip connections (node connections that skip layers), recurrent relations (a node’s output is placed back into the node), etc.</p>
+<p>As mentioned, the group decided to use a feed-forward neural network. The network was configured to flatten the <span class="math inline">\(28 \times 28\)</span> to a vector of 784 values. The second and third layer were configured to use 512 nodes. Finally, the output of the network was structured to use 10 nodes as the number of classes in the MNIST Fashion dataset is 10. The following represents a summary of the network architecture:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>(784, 1)</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>(784, 512)</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>(512, 10)</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>(10, 1)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="ANN.jpg" /></p>
 
 
 
