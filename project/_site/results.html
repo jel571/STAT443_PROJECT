@@ -330,7 +330,7 @@ $(document).ready(function () {
             &#39;Trouser&#39;,
             &#39;Pullover&#39;,
             &#39;Dress&#39;,
-            &#39;Coat&#39;, 
+            &#39;Coat&#39;,
             &#39;Sandal&#39;,
             &#39;Shirt&#39;,
             &#39;Sneaker&#39;,
@@ -355,14 +355,14 @@ sample_image$y &lt;- seq_len(nrow(sample_image))
 sample_image &lt;- gather(sample_image, &quot;x&quot;, &quot;value&quot;, -y)
 sample_image$x &lt;- as.integer(sample_image$x)
 
-p &lt;- ggplot(sample_image, aes(x=x, y=y, fill=value)) + 
+p &lt;- ggplot(sample_image, aes(x=x, y=y, fill=value)) +
     geom_tile() +
     scale_fill_gradient(low=&quot;white&quot;, high=&quot;black&quot;, na.value=NA) +
     scale_y_reverse() +
     theme_minimal() +
     theme(panel.grid=element_blank()) +
     theme(aspect.ratio=1) +
-    xlab(&quot;&quot;) + 
+    xlab(&quot;&quot;) +
     ylab(&quot;&quot;)
 print(p)</code></pre>
 <p><img src="results_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
@@ -375,10 +375,55 @@ par(mar=c(0, 0, 1.5, 0), xaxs=&#39;i&#39;, yaxs=&#39;i&#39;)
 for(i in 42:66) {
     img &lt;- train_images[i, , ]
     img &lt;- t(apply(img, 2, rev))
-    image(1:28, 1:28, img, col=gray((0:255)/255), xaxt=&#39;n&#39;, yaxt=&#39;n&#39;, 
+    image(1:28, 1:28, img, col=gray((0:255)/255), xaxt=&#39;n&#39;, yaxt=&#39;n&#39;,
           main=paste(classes[train_labels[i] + 1]))
 }</code></pre>
 <p><img src="results_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Now, we begin to build our model and establish our layers, which will start by shrinking the first layer into 32 values. After this layer has been evaluated by the sigmoid activation function, it will produce another level of 32 values, which goes through a different activation function (ReLU) before being sent to the final layer of ten values:</p>
+<pre class="r"><code>model &lt;- keras_model_sequential()
+model %&gt;%
+    layer_flatten(input_shape=c(28, 28)) %&gt;%
+    layer_dense(units=128, activation=&#39;sigmoid&#39;) %&gt;%
+    layer_dropout(0.2) %&gt;%
+    layer_dense(units=64, activation=&#39;relu&#39;)%&gt;%
+    layer_dropout(0.2) %&gt;%
+    layer_dense(units=10, activation=&#39;softmax&#39;)</code></pre>
+<p>After establishing the layers, and during the compilation of the model, we must include some preliminary steps: the loss function, optimizer, and metrics. The loss function measure the difference between a given true label and the prediction of the network. The model uses the optimizer to update itself based on the data and loss function; adam specifically uses a gradient-based optimization . Metrics are what monitor the training and testing steps.</p>
+<pre class="r"><code>model %&gt;% compile(optimizer=&#39;adam&#39;,
+                  loss=&#39;sparse_categorical_crossentropy&#39;,
+                  metrics=c(&#39;accuracy&#39;))</code></pre>
+<p>With all of this set up, we are finally able to train our neural network. The “epochs” option determine how many cycles we let the network train upon. Here, we will train the network 10 times. At the end of each epoch, keras will update us on the loss and accuracy of each run as well as validation scores of our testing data set.</p>
+<pre class="r"><code>model %&gt;% fit(train_images, train_labels,
+              epochs=25,
+              batch_size=128,
+              validation_data=list(test_images, test_labels))</code></pre>
+<p>After training the model, we can make some predictions with the set of test images (i.e., the model predicts the label for each image in correspondence to the 10 classes we had previously outlined). The highest value in the output distribution is what tells us what the model’s prediction is.</p>
+<pre class="r"><code>prediction &lt;- model %&gt;% predict_classes(test_images)
+prediction[1:20]</code></pre>
+<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 2 8 0</code></pre>
+<pre class="r"><code>test_labels[1:20]</code></pre>
+<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 4 8 0</code></pre>
+<p>For our last trick, we show the prediction results from a subset of the data visually. Correct predictions will show up with green text and wrong predictions will be shown with red text.</p>
+<pre class="r"><code>par(mfcol=c(5,5))
+par(mar=c(0, 0, 1.5, 0), xaxs=&#39;i&#39;, yaxs=&#39;i&#39;)
+for (i in 1:25) {
+  img &lt;- test_images[i, , ]
+  img &lt;- t(apply(img, 2, rev))
+  if (prediction[i] == test_labels[i]) {
+    color &lt;- &#39;#34FE82&#39;
+  } else {
+    color &lt;- &#39;#FF5567&#39;
+  }
+  image(1:28, 1:28, img, col=gray((0:255)/255), xaxt=&#39;n&#39;, yaxt=&#39;n&#39;,
+        main = paste0(classes[prediction[i] + 1], &quot; (&quot;,
+                      classes[test_labels[i] + 1], &quot;)&quot;),
+        col.main = color)
+}</code></pre>
+<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div id="sample-accuracy-and-loss-plots-from-the-training-process" class="section level4">
+<h4>Sample accuracy and loss plots from the training process</h4>
+<p><img src="training.png" /></p>
+</div>
 </div>
 
 

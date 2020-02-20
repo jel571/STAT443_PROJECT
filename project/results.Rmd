@@ -93,7 +93,7 @@ shrinking the first layer into 32 values. After this layer has been evaluated
 by the sigmoid activation function, it will produce another level of 32 values,
 which goes through a different activation function (ReLU) before being sent to
 the final layer of ten values:
-```{r, echo=FALSE}
+```{r}
 model <- keras_model_sequential()
 model %>%
     layer_flatten(input_shape=c(28, 28)) %>%
@@ -110,7 +110,7 @@ loss function measure the difference between a given true label and the
 prediction of the network. The model uses the optimizer to update itself based
 on the data and loss function; adam specifically uses a gradient-based
 optimization . Metrics are what monitor the training and testing steps.
-```{r, echo=FALSE}
+```{r}
 model %>% compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
                   metrics=c('accuracy'))
@@ -122,7 +122,7 @@ we will train the network 10 times. At the end of each epoch, keras will update
 us on the loss and accuracy of each run as well as validation scores of our
 testing data set.
 
-```{r, echo=FALSE}
+```{r}
 model %>% fit(train_images, train_labels,
               epochs=25,
               batch_size=128,
@@ -137,7 +137,7 @@ distribution is what tells us what the model's prediction is.
 prediction <- model %>% predict_classes(test_images)
 prediction[1:20]
 
-test_labels[1]
+test_labels[1:20]
 ```
 
 For our last trick, we show the prediction results from a subset of the data
@@ -146,20 +146,20 @@ will be shown with red text.
 ```{r}
 par(mfcol=c(5,5))
 par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
-for (i in 387:412) {
+for (i in 1:25) {
   img <- test_images[i, , ]
   img <- t(apply(img, 2, rev))
-  # subtract 1 as labels go from 0 to 9
-  predicted_label <- (prediction[i] - 1)
-  true_label <- test_labels[i]
-  if (predicted_label == true_label) {
-    color <- '#008800'
+  if (prediction[i] == test_labels[i]) {
+    color <- '#34FE82'
   } else {
-    color <- '#bb0000'
+    color <- '#FF5567'
   }
-  image(1:28, 1:28, img, col = gray((0:255)/255), xaxt = 'n', yaxt = 'n',
-        main = paste0(class_names[predicted_label + 1], " (",
-                      class_names[true_label + 1], ")"),
+  image(1:28, 1:28, img, col=gray((0:255)/255), xaxt='n', yaxt='n',
+        main = paste0(classes[prediction[i] + 1], " (",
+                      classes[test_labels[i] + 1], ")"),
         col.main = color)
 }
 ```
+
+#### Sample accuracy and loss plots from the training process
+![](./training.png)
