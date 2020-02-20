@@ -1,0 +1,165 @@
+---
+title: Results
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+One of the most popular high-level libraries for building machine learning
+models is Keras. In addition to Keras, we have also used ggplot2 for creating
+visualizations:
+```{r, echo=FALSE}
+library(keras)
+library(ggplot2)
+library(tidyr)
+```
+
+## Data loading and preparation
+As covered in the Problem section, the group used the MNIST Fashion dataset for
+training a model to classify clothing items:
+```{r, echo=FALSE}
+fashion_mnist <- dataset_fashion_mnist()
+c(train_images, train_labels) %<-% fashion_mnist$train
+c(test_images, test_labels) %<-% fashion_mnist$test
+```
+
+We can also prepare a vector of the possible classes the model will attempt to classify samples as:
+```{r}
+classes = c('T-shirt/top',
+            'Trouser',
+            'Pullover',
+            'Dress',
+            'Coat',
+            'Sandal',
+            'Shirt',
+            'Sneaker',
+            'Bag',
+            'Ankle boot')
+```
+
+## Data exploration
+
+According to official documentation, there should be 60000 28 x 28 training images along with 60000 labels and 10000 28 x 28 test images along with 10000 test labels:
+```{r}
+dim(train_images)
+dim(train_labels)
+dim(test_images)
+dim(test_labels)
+```
+
+We can also plot a sample image of an item:
+```{r}
+sample_image <- as.data.frame(train_images[666, , ])
+colnames(sample_image) <- seq_len(ncol(sample_image))
+sample_image$y <- seq_len(nrow(sample_image))
+sample_image <- gather(sample_image, "x", "value", -y)
+sample_image$x <- as.integer(sample_image$x)
+
+p <- ggplot(sample_image, aes(x=x, y=y, fill=value)) +
+    geom_tile() +
+    scale_fill_gradient(low="white", high="black", na.value=NA) +
+    scale_y_reverse() +
+    theme_minimal() +
+    theme(panel.grid=element_blank()) +
+    theme(aspect.ratio=1) +
+    xlab("") +
+    ylab("")
+print(p)
+```
+
+Neural networks deal more gracefully with values that are scaled to be between 0 and 1. The reason is large ranges, such as 0 to 255, can cause large perturbations in the output of the network because the values are large:
+```{r}
+train_images <- train_images/255
+test_images <- test_images/255
+```
+
+We can inspect a subset of the images to make sure they are in the expected format and have the correct labels based on visual inspection:
+```{r}
+par(mfcol=c(5,5))
+par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
+for(i in 42:66) {
+    img <- train_images[i, , ]
+    img <- t(apply(img, 2, rev))
+    image(1:28, 1:28, img, col=gray((0:255)/255), xaxt='n', yaxt='n',
+          main=paste(classes[train_labels[i] + 1]))
+}
+```
+
+Now, we begin to build our model and establish our layers, which will start by
+shrinking the first layer into 32 values. After this layer has been evaluated
+by the sigmoid activation function, it will produce another level of 32 values,
+which goes through a different activation function (ReLU) before being sent to
+the final layer of ten values:
+```{r, echo=FALSE}
+model <- keras_model_sequential()
+model %>%
+    layer_flatten(input_shape=c(28, 28)) %>%
+    layer_dense(units=128, activation='sigmoid') %>%
+    layer_dropout(0.2) %>%
+    layer_dense(units=64, activation='relu')%>%
+    layer_dropout(0.2) %>%
+    layer_dense(units=10, activation='softmax')
+```
+
+After establishing the layers, and during the compilation of the model, we must
+include some preliminary steps: the loss function, optimizer, and metrics. The
+loss function measure the difference between a given true label and the
+prediction of the network. The model uses the optimizer to update itself based
+on the data and loss function; adam specifically uses a gradient-based
+optimization . Metrics are what monitor the training and testing steps.
+```{r, echo=FALSE}
+model %>% compile(optimizer='adam',
+                  loss='sparse_categorical_crossentropy',
+                  metrics=c('accuracy'))
+```
+
+With all of this set up, we are finally able to train our neural network. The
+"epochs" option determine how many cycles we let the network train upon. Here,
+we will train the network 10 times. At the end of each epoch, keras will update
+us on the loss and accuracy of each run as well as validation scores of our
+testing data set.
+
+```{r, echo=FALSE}
+model %>% fit(train_images, train_labels,
+              epochs=25,
+              batch_size=128,
+              validation_data=list(test_images, test_labels))
+```
+
+After training the model, we can make some predictions with the set of test
+images (i.e., the model predicts the label for each image in correspondence to
+the 10 classes we had previously outlined). The highest value in the output
+distribution is what tells us what the model's prediction is.
+```{r}
+prediction <- model %>% predict_classes(test_images)
+prediction[1:20]
+
+test_labels[1]
+```
+
+For our last trick, we show the prediction results from a subset of the data
+visually. Correct predictions will show up with green text and wrong predictions
+will be shown with red text.
+```{r}
+par(mfcol=c(5,5))
+par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
+for (i in 387:412) {
+  img <- test_images[i, , ]
+  img <- t(apply(img, 2, rev))
+  # subtract 1 as labels go from 0 to 9
+  predicted_label <- (prediction[i] - 1)
+  true_label <- test_labels[i]
+  if (predicted_label == true_label) {
+    color <- '#008800'
+  } else {
+    color <- '#bb0000'
+  }
+  image(1:28, 1:28, img, col = gray((0:255)/255), xaxt = 'n', yaxt = 'n',
+        main = paste0(class_names[predicted_label + 1], " (",
+                      class_names[true_label + 1], ")"),
+        col.main = color)
+}
+```
