@@ -12,6 +12,8 @@ navbar:
           href: architectures.html
         - text: "Linear algebra"
           href: linear_algebra.html
+        - text: "Results"
+          href: results.html
         - text: "Comparison"
           href: comparison.html
         - text: "Applicability"
