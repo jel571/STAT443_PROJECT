@@ -11,7 +11,7 @@
 
 
 
-<title>Architectures</title>
+<title>Results</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -313,47 +313,73 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Architectures</h1>
+<h1 class="title toc-ignore">Results</h1>
 
 </div>
 
 
-<p>Multiple types of neural network architectures have been proposed. Some examples are:</p>
-<ol style="list-style-type: decimal">
-<li>Recurrent neural networks - networks that have recurrent connections between nodes;</li>
-<li>Convolution neural networks - networks that replace the dot product with a convolution operation that summarizes multiple elements from an input, e.g pixels;</li>
-<li>Capsule networks - use capsules, which are collections of nodes, instead of independent network nodes;</li>
-<li><a href="https://www.asimovinstitute.org/neural-network-zoo/">Others</a>.</li>
-</ol>
-<p>The group decided to use a simple feed-forward neural network, which uses nodes that are fully connected between layers. The decision to use a simple network is two-fold: 1. Simplicity - although the model itself can be come complex due to the high number of parameters, the group does not have to be concerned with models that have very complex architectures; 2. Ease of implementation - a neural network that follows a simple architecture is typically easier to implement by comparison to networks that have skip connections (node connections that skip layers), recurrent relations (a node’s output is placed back into the node), etc.</p>
-<p>As mentioned, the group decided to use a feed-forward neural network. The network was configured to flatten the <span class="math inline">\(28 \times 28\)</span> to a vector of 784 values. The second and third layer were configured to use 512 nodes. Finally, the output of the network was structured to use 10 nodes as the number of classes in the MNIST Fashion dataset is 10. The following represents a summary of the network architecture:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Layer</th>
-<th>Size</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td>(784, 1)</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>(784, 512)</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>(512, 10)</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td>(10, 1)</td>
-</tr>
-</tbody>
-</table>
-<p><img src="ANN.jpg" /></p>
+<div id="libraries" class="section level2">
+<h2>Libraries</h2>
+<p>One of the most popular high-level libraries for building machine learning models is Keras. In addition to Keras, we have also used ggplot2 for creating visualizations:</p>
+</div>
+<div id="data-loading-and-preparation" class="section level2">
+<h2>Data loading and preparation</h2>
+<p>As covered in the Problem section, the group used the MNIST Fashion dataset for training a model to classify clothing items:</p>
+<p>We can also prepare a vector of the possible classes the model will attempt to classify samples as:</p>
+<pre class="r"><code>classes = c(&#39;T-shirt/top&#39;,
+            &#39;Trouser&#39;,
+            &#39;Pullover&#39;,
+            &#39;Dress&#39;,
+            &#39;Coat&#39;, 
+            &#39;Sandal&#39;,
+            &#39;Shirt&#39;,
+            &#39;Sneaker&#39;,
+            &#39;Bag&#39;,
+            &#39;Ankle boot&#39;)</code></pre>
+</div>
+<div id="data-exploration" class="section level2">
+<h2>Data exploration</h2>
+<p>According to official documentation, there should be 60000 28 x 28 training images along with 60000 labels and 10000 28 x 28 test images along with 10000 test labels:</p>
+<pre class="r"><code>dim(train_images)</code></pre>
+<pre><code>## [1] 60000    28    28</code></pre>
+<pre class="r"><code>dim(train_labels)</code></pre>
+<pre><code>## [1] 60000</code></pre>
+<pre class="r"><code>dim(test_images)</code></pre>
+<pre><code>## [1] 10000    28    28</code></pre>
+<pre class="r"><code>dim(test_labels)</code></pre>
+<pre><code>## [1] 10000</code></pre>
+<p>We can also plot a sample image of an item:</p>
+<pre class="r"><code>sample_image &lt;- as.data.frame(train_images[666, , ])
+colnames(sample_image) &lt;- seq_len(ncol(sample_image))
+sample_image$y &lt;- seq_len(nrow(sample_image))
+sample_image &lt;- gather(sample_image, &quot;x&quot;, &quot;value&quot;, -y)
+sample_image$x &lt;- as.integer(sample_image$x)
+
+p &lt;- ggplot(sample_image, aes(x=x, y=y, fill=value)) + 
+    geom_tile() +
+    scale_fill_gradient(low=&quot;white&quot;, high=&quot;black&quot;, na.value=NA) +
+    scale_y_reverse() +
+    theme_minimal() +
+    theme(panel.grid=element_blank()) +
+    theme(aspect.ratio=1) +
+    xlab(&quot;&quot;) + 
+    ylab(&quot;&quot;)
+print(p)</code></pre>
+<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Neural networks deal more gracefully with values that are scaled to be between 0 and 1. The reason is large ranges, such as 0 to 255, can cause large perturbations in the output of the network because the values are large:</p>
+<pre class="r"><code>train_images &lt;- train_images/255
+test_images &lt;- test_images/255</code></pre>
+<p>We can inspect a subset of the images to make sure they are in the expected format and have the correct labels based on visual inspection:</p>
+<pre class="r"><code>par(mfcol=c(5,5))
+par(mar=c(0, 0, 1.5, 0), xaxs=&#39;i&#39;, yaxs=&#39;i&#39;)
+for(i in 42:66) {
+    img &lt;- train_images[i, , ]
+    img &lt;- t(apply(img, 2, rev))
+    image(1:28, 1:28, img, col=gray((0:255)/255), xaxt=&#39;n&#39;, yaxt=&#39;n&#39;, 
+          main=paste(classes[train_labels[i] + 1]))
+}</code></pre>
+<p><img src="results_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
 
 
 
