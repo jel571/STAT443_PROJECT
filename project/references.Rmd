@@ -1,0 +1,15 @@
+---
+title: References
+output: html_document
+---
+
+Here is a list of references we have used for completing this assignment:
+
+1. [Creating neural networks with R Keras](https://keras.rstudio.com/articles/tutorial_basic_classification.html#import-the-fashion-mnist-dataset)
+1. [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence)
+1. [Artificial Neural Networks in Image Processing for Early Detection of Breast Cancer](http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf)
+1. [Fixed point optimization of deep convolutional neural networks for object recognition](https://ieeexplore.ieee.org/abstract/document/7178146)
+1. [3B1B video series on neural networks](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+1. [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist/blob/master/README.md) [Also available on arxiv](https://arxiv.org/abs/1708.07747)
+1. [Activation functions](https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6)
+1. 1. [ReLU](https://www.kaggle.com/dansbecker/rectified-linear-units-relu-in-deep-learning)

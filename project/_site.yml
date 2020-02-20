@@ -18,3 +18,5 @@ navbar:
           href: comparison.html
         - text: "Applicability"
           href: applicability.html
+        - text: "References"
+          href: references.html
