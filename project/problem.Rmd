@@ -14,7 +14,7 @@ neural networks such as supervised, semi-supervised, and unsupervised. The
 technique we focused on using is supervised learning.
 
 Supervised learning aims to train a neural network to perform a specific task,
-such as classification, object detection, translation, etc, by passing a sample
+such as classification, object detection, translation, etc., by passing a sample
 data point through the neural network and providing the answer at the same time.
 This way, the network has the opportunity to learn by computing the loss
 (difference) between the given output (correct answer) and its own (temporarily

@@ -9,9 +9,9 @@ knitr::opts_chunk$set(echo = TRUE)
 An algorithm that would have been better suited to identifying images would be
 the convolutional neural network (CNN or ConvNet) which specializes in analyzing
 visuals and reduces the computational workload while retaining necessary
-information.  The CNN does this by only having the last layer be fully connected
-(whereas the ANN is fully connected in all layers) and pools layers to streamline
-any underlying computation.
+information. The CNN does this by only having the last layer be fully connected
+(whereas the ANN is fully connected in all layers) and pools layers to
+streamline any underlying computation.
 Our group decided to use the simpler artificial neural network for ease of use.
 ![Credit: Sathiesh Kumar on ResearchGate](./ANNvsCNN.png)
 

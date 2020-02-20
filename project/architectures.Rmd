@@ -46,4 +46,4 @@ architecture:
 | 3     | (10, 1)    |
 
 
-![](./ANN.jpg)
+![Photo courtesy of Jennifer Lam](./ANN.jpg)

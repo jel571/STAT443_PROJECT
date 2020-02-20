@@ -11,7 +11,7 @@
 
 
 
-<title>Architectures</title>
+<title>References</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -316,50 +316,27 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Architectures</h1>
+<h1 class="title toc-ignore">References</h1>
 
 </div>
 
 
-<p>Multiple types of neural network architectures have been proposed. Some examples are:</p>
+<p>Here is a list of references we have used for completing this assignment:</p>
 <ol style="list-style-type: decimal">
-<li>Recurrent neural networks - networks that have recurrent connections between nodes;</li>
-<li>Convolution neural networks - networks that replace the dot product with a convolution operation that summarizes multiple elements from an input, e.g pixels;</li>
-<li>Capsule networks - use capsules, which are collections of nodes, instead of independent network nodes;</li>
-<li><a href="https://www.asimovinstitute.org/neural-network-zoo/">Others</a>.</li>
+<li><a href="https://keras.rstudio.com/articles/tutorial_basic_classification.html#import-the-fashion-mnist-dataset">Creating neural networks with R Keras</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a></li>
+<li><a href="http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf">Artificial Neural Networks in Image Processing for Early Detection of Breast Cancer</a></li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/7178146">Fixed point optimization of deep convolutional neural networks for object recognition</a></li>
+<li><a href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">3B1B video series on neural networks</a></li>
+<li><a href="https://github.com/zalandoresearch/fashion-mnist/blob/master/README.md">Fashion MNIST</a> <a href="https://arxiv.org/abs/1708.07747">Also available on arxiv</a></li>
+<li><a href="https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6">Activation functions</a></li>
+<li><a href="https://www.kaggle.com/dansbecker/rectified-linear-units-relu-in-deep-learning">ReLU</a></li>
+<li><a href="(http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf)">Reaches of NNs</a></li>
+<li><a href="https://www.researchgate.net/publication/258312237_Face_Recognition_Using_Artificial_Neural_Networks">Facial recognition</a></li>
+<li><a href="%5Barticle%5D(https://towardsdatascience.com/capsule-neural-networks-the-future-for-autonomous-vehicles-f97bc3f7918)">Object detection</a></li>
+<li><a href="%5Bpaper%5D(https://www.researchgate.net/publication/325626219_RecycleNet_Intelligent_Waste_Sorting_Using_Deep_Neural_Networks)">Robotics</a></li>
+<li><a href="https://www.deeplearningbook.org/">Deep Learning Book</a></li>
 </ol>
-<p>The group decided to use a simple feed-forward neural network, which uses nodes that are fully connected between layers. The decision to use a simple network is two-fold: 1. Simplicity - although the model itself can be come complex due to the high number of parameters, the group does not have to be concerned with models that have very complex architectures; 2. Ease of implementation - a neural network that follows a simple architecture is typically easier to implement by comparison to networks that have skip connections (node connections that skip layers), recurrent relations (a node’s output is placed back into the node), etc.</p>
-<p>As mentioned, the group decided to use a feed-forward neural network. The network was configured to flatten the <span class="math inline">\(28 \times 28\)</span> to a vector of 784 values. The second and third layer were configured to use 512 nodes. Finally, the output of the network was structured to use 10 nodes as the number of classes in the MNIST Fashion dataset is 10. The following represents a summary of the network architecture:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Layer</th>
-<th>Size</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td>(784, 1)</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>(784, 512)</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>(512, 10)</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td>(10, 1)</td>
-</tr>
-</tbody>
-</table>
-<div class="figure">
-<img src="ANN.jpg" alt="Photo courtesy of Jennifer Lam" />
-<p class="caption">Photo courtesy of Jennifer Lam</p>
-</div>
 
 
 

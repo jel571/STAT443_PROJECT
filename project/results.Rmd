@@ -26,7 +26,8 @@ c(train_images, train_labels) %<-% fashion_mnist$train
 c(test_images, test_labels) %<-% fashion_mnist$test
 ```
 
-We can also prepare a vector of the possible classes the model will attempt to classify samples as:
+We can also prepare a vector of the possible classes the model will attempt to
+classify samples as:
 ```{r}
 classes = c('T-shirt/top',
             'Trouser',
@@ -42,7 +43,9 @@ classes = c('T-shirt/top',
 
 ## Data exploration
 
-According to official documentation, there should be 60000 28 x 28 training images along with 60000 labels and 10000 28 x 28 test images along with 10000 test labels:
+According to official documentation, there should be 60000 28 x 28 training
+images along with 60000 labels and 10000 28 x 28 test images along with 10000
+test labels:
 ```{r}
 dim(train_images)
 dim(train_labels)
@@ -70,13 +73,16 @@ p <- ggplot(sample_image, aes(x=x, y=y, fill=value)) +
 print(p)
 ```
 
-Neural networks deal more gracefully with values that are scaled to be between 0 and 1. The reason is large ranges, such as 0 to 255, can cause large perturbations in the output of the network because the values are large:
+Neural networks deal more gracefully with values that are scaled to be between 0
+and 1. The reason is large ranges, such as 0 to 255, can cause large
+perturbations in the output of the network because the values are large:
 ```{r}
 train_images <- train_images/255
 test_images <- test_images/255
 ```
 
-We can inspect a subset of the images to make sure they are in the expected format and have the correct labels based on visual inspection:
+We can inspect a subset of the images to make sure they are in the expected
+format and have the correct labels based on visual inspection:
 ```{r}
 par(mfcol=c(5,5))
 par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
