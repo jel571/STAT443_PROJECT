@@ -1,13 +1,16 @@
 ---
 title: Results
-output: html_document
+output: 
+    html_document:
+        css: styles.css
+        fig_width: 10
+        fig_height: 9
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Libraries
 One of the most popular high-level libraries for building machine learning
 models is Keras. In addition to Keras, we have also used ggplot2 for creating
 visualizations:
@@ -17,7 +20,7 @@ library(ggplot2)
 library(tidyr)
 ```
 
-## Data loading and preparation
+##### Data loading and preparation
 As covered in the Problem section, the group used the MNIST Fashion dataset for
 training a model to classify clothing items:
 ```{r, echo=FALSE}
@@ -41,7 +44,7 @@ classes = c('T-shirt/top',
             'Ankle boot')
 ```
 
-## Data exploration
+##### Data exploration
 
 According to official documentation, there should be 60000 28 x 28 training
 images along with 60000 labels and 10000 28 x 28 test images along with 10000
@@ -72,6 +75,8 @@ p <- ggplot(sample_image, aes(x=x, y=y, fill=value)) +
     ylab("")
 print(p)
 ```
+
+##### Training 
 
 Neural networks deal more gracefully with values that are scaled to be between 0
 and 1. The reason is large ranges, such as 0 to 255, can cause large
@@ -129,11 +134,14 @@ us on the loss and accuracy of each run as well as validation scores of our
 testing data set.
 
 ```{r}
-model %>% fit(train_images, train_labels,
-              epochs=25,
-              batch_size=128,
-              validation_data=list(test_images, test_labels))
+history <- model %>% fit(train_images, train_labels,
+                         epochs=25,
+                         batch_size=128,
+                         validation_data=list(test_images, test_labels),
+                         view_metrics=FALSE)
 ```
+
+##### Prediction results
 
 After training the model, we can make some predictions with the set of test
 images (i.e., the model predicts the label for each image in correspondence to
@@ -142,7 +150,6 @@ distribution is what tells us what the model's prediction is.
 ```{r}
 prediction <- model %>% predict_classes(test_images)
 prediction[1:20]
-
 test_labels[1:20]
 ```
 
@@ -167,5 +174,36 @@ for (i in 1:25) {
 }
 ```
 
-#### Sample accuracy and loss plots from the training process
-![](./training.png)
+##### Sample accuracy and loss plots from the training process
+
+```{r}
+train_acc <- history$metrics$accuracy
+train_loss <- history$metrics$loss
+val_acc <- history$metrics$val_accuracy
+val_loss <- history$metrics$val_loss
+
+acc <- data.frame(train_acc=train_acc, val_acc=val_acc)
+loss <- data.frame(train_loss=train_loss, val_loss=val_loss)
+
+ggplot(data=acc, aes(1:25, train_acc, color="blue")) + 
+  geom_point() + 
+  geom_point(data=acc, aes(1:25, val_acc, color="red")) +
+  theme_bw() +
+  labs(title="Training and validation accuracy during training", 
+       x="Epoch", 
+       y="Accuracy", 
+       color="Dataset") +
+  scale_color_manual(labels=c("Training", "Validation"), values=c("blue", "red")) + 
+  theme(plot.title=element_text(size=14, face="bold"))
+
+ggplot(data=loss, aes(1:25, train_loss, color="blue")) + 
+  geom_point() + 
+  geom_point(data=loss, aes(1:25, val_loss, color="red")) +
+  theme_bw() +
+  labs(title="Training and validation loss during training", 
+       x="Epoch", 
+       y="Loss", 
+       color="Dataset") +
+  scale_color_manual(labels=c("Training", "Validation"), values=c("blue", "red")) + 
+  theme(plot.title=element_text(size=14, face="bold"))
+```

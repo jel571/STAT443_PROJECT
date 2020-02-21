@@ -1,6 +1,8 @@
 ---
 title: References
-output: html_document
+output: 
+    html_document:
+        css: styles.css
 ---
 
 Here is a list of references we have used for completing this assignment:

@@ -68,6 +68,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -267,7 +268,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">STAT443 - Homework 2</a>
+      <a class="navbar-brand" href="index.html">Introduction to Neural Networks</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -281,9 +282,6 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="problem.html">Problem</a>
-    </li>
     <li>
       <a href="architectures.html">Architectures</a>
     </li>
@@ -321,9 +319,19 @@ $(document).ready(function () {
 </div>
 
 
+<div id="convolutional-neural-networks" class="section level4">
+<h4>Convolutional neural networks</h4>
 <p>An algorithm that would have been better suited to identifying images would be the convolutional neural network (CNN or ConvNet) which specializes in analyzing visuals and reduces the computational workload while retaining necessary information. The CNN does this by only having the last layer be fully connected (whereas the ANN is fully connected in all layers) and pools layers to streamline any underlying computation. Our group decided to use the simpler artificial neural network for ease of use. <img src="ANNvsCNN.png" alt="Credit: Sathiesh Kumar on ResearchGate" /></p>
-<p>In comparison to the usage of logistic regression which is analogous to linear regression (since logistic regression is a special case of the generalized linear model), an artificial neural network can handle more than a dichotomous outcome. Multivariate logistic regression could also work for image recognition, but a major downfall of it is that the more parameters there are, the more likely it is to overfit the data. With a dataset in the tens of thousands, the chances of the model poorly fitting the data is much higher than if it were only using, say 10 parameters. <img src="overfitting-logreg-ex.png" alt="Credit: mlwiki.org/index.php/Overfitting" /></p>
-<p>Similarly, algorithms for cluster analysis could also work but it relies more on finding similarities between subjects rather than learning on its own and associating a probability from each image to a class.</p>
+</div>
+<div id="linear-regression-and-multivariate-logistic-regression" class="section level4">
+<h4>Linear Regression and Multivariate logistic regression</h4>
+<p>By comparison to the usage of logistic regression which is analogous to linear regression (since logistic regression is a special case of the generalized linear model), an artificial neural network can handle more than a dichotomous outcome.</p>
+<p>Multivariate logistic regression could also work for image recognition, but a major downfall of it is that the more parameters there are, the more likely it is to overfit the data. With a dataset in the tens of thousands, the chances of the model poorly fitting the data is much higher than if it were only using, say 10 parameters. <img src="overfitting-logreg-ex.png" alt="Credit: mlwiki.org/index.php/Overfitting" /></p>
+</div>
+<div id="clustering" class="section level4">
+<h4>Clustering</h4>
+<p>Similarly, algorithms for cluster analysis could also work but they rely more on finding similarities between subjects rather than learning on its own and associating a probability from each image to a class.</p>
+</div>
 
 
 

@@ -1,6 +1,8 @@
 ---
 title: Linear Algebra
-output: html_document
+output: 
+    html_document:
+        css: styles.css
 ---
 
 ```{r setup, include=FALSE}

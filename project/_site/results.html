@@ -68,6 +68,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -267,7 +268,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">STAT443 - Homework 2</a>
+      <a class="navbar-brand" href="index.html">Introduction to Neural Networks</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -281,9 +282,6 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="problem.html">Problem</a>
-    </li>
     <li>
       <a href="architectures.html">Architectures</a>
     </li>
@@ -321,12 +319,9 @@ $(document).ready(function () {
 </div>
 
 
-<div id="libraries" class="section level2">
-<h2>Libraries</h2>
 <p>One of the most popular high-level libraries for building machine learning models is Keras. In addition to Keras, we have also used ggplot2 for creating visualizations:</p>
-</div>
-<div id="data-loading-and-preparation" class="section level2">
-<h2>Data loading and preparation</h2>
+<div id="data-loading-and-preparation" class="section level5">
+<h5>Data loading and preparation</h5>
 <p>As covered in the Problem section, the group used the MNIST Fashion dataset for training a model to classify clothing items:</p>
 <p>We can also prepare a vector of the possible classes the model will attempt to classify samples as:</p>
 <pre class="r"><code>classes = c(&#39;T-shirt/top&#39;,
@@ -340,8 +335,8 @@ $(document).ready(function () {
             &#39;Bag&#39;,
             &#39;Ankle boot&#39;)</code></pre>
 </div>
-<div id="data-exploration" class="section level2">
-<h2>Data exploration</h2>
+<div id="data-exploration" class="section level5">
+<h5>Data exploration</h5>
 <p>According to official documentation, there should be 60000 28 x 28 training images along with 60000 labels and 10000 28 x 28 test images along with 10000 test labels:</p>
 <pre class="r"><code>dim(train_images)</code></pre>
 <pre><code>## [1] 60000    28    28</code></pre>
@@ -368,7 +363,10 @@ p &lt;- ggplot(sample_image, aes(x=x, y=y, fill=value)) +
     xlab(&quot;&quot;) +
     ylab(&quot;&quot;)
 print(p)</code></pre>
-<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
+</div>
+<div id="training" class="section level5">
+<h5>Training</h5>
 <p>Neural networks deal more gracefully with values that are scaled to be between 0 and 1. The reason is large ranges, such as 0 to 255, can cause large perturbations in the output of the network because the values are large:</p>
 <pre class="r"><code>train_images &lt;- train_images/255
 test_images &lt;- test_images/255</code></pre>
@@ -381,7 +379,7 @@ for(i in 42:66) {
     image(1:28, 1:28, img, col=gray((0:255)/255), xaxt=&#39;n&#39;, yaxt=&#39;n&#39;,
           main=paste(classes[train_labels[i] + 1]))
 }</code></pre>
-<p><img src="results_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="results_files/figure-html/unnamed-chunk-7-1.png" width="960" /></p>
 <p>Now, we begin to build our model and establish our layers, which will start by shrinking the first layer into 32 values. After this layer has been evaluated by the sigmoid activation function, it will produce another level of 32 values, which goes through a different activation function (ReLU) before being sent to the final layer of ten values:</p>
 <pre class="r"><code>model &lt;- keras_model_sequential()
 model %&gt;%
@@ -396,14 +394,18 @@ model %&gt;%
                   loss=&#39;sparse_categorical_crossentropy&#39;,
                   metrics=c(&#39;accuracy&#39;))</code></pre>
 <p>With all of this set up, we are finally able to train our neural network. The “epochs” option determine how many cycles we let the network train upon. Here, we will train the network 10 times. At the end of each epoch, keras will update us on the loss and accuracy of each run as well as validation scores of our testing data set.</p>
-<pre class="r"><code>model %&gt;% fit(train_images, train_labels,
-              epochs=25,
-              batch_size=128,
-              validation_data=list(test_images, test_labels))</code></pre>
+<pre class="r"><code>history &lt;- model %&gt;% fit(train_images, train_labels,
+                         epochs=25,
+                         batch_size=128,
+                         validation_data=list(test_images, test_labels),
+                         view_metrics=FALSE)</code></pre>
+</div>
+<div id="prediction-results" class="section level5">
+<h5>Prediction results</h5>
 <p>After training the model, we can make some predictions with the set of test images (i.e., the model predicts the label for each image in correspondence to the 10 classes we had previously outlined). The highest value in the output distribution is what tells us what the model’s prediction is.</p>
 <pre class="r"><code>prediction &lt;- model %&gt;% predict_classes(test_images)
 prediction[1:20]</code></pre>
-<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 2 8 0</code></pre>
+<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 5 3 4 1 2 2 8 0</code></pre>
 <pre class="r"><code>test_labels[1:20]</code></pre>
 <pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 4 8 0</code></pre>
 <p>For our last trick, we show the prediction results from a subset of the data visually. Correct predictions will show up with green text and wrong predictions will be shown with red text.</p>
@@ -422,11 +424,40 @@ for (i in 1:25) {
                       classes[test_labels[i] + 1], &quot;)&quot;),
         col.main = color)
 }</code></pre>
-<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<div id="sample-accuracy-and-loss-plots-from-the-training-process" class="section level4">
-<h4>Sample accuracy and loss plots from the training process</h4>
-<p><img src="training.png" /></p>
+<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" width="960" /></p>
 </div>
+<div id="sample-accuracy-and-loss-plots-from-the-training-process" class="section level5">
+<h5>Sample accuracy and loss plots from the training process</h5>
+<pre class="r"><code>train_acc &lt;- history$metrics$accuracy
+train_loss &lt;- history$metrics$loss
+val_acc &lt;- history$metrics$val_accuracy
+val_loss &lt;- history$metrics$val_loss
+
+acc &lt;- data.frame(train_acc=train_acc, val_acc=val_acc)
+loss &lt;- data.frame(train_loss=train_loss, val_loss=val_loss)
+
+ggplot(data=acc, aes(1:25, train_acc, color=&quot;blue&quot;)) + 
+  geom_point() + 
+  geom_point(data=acc, aes(1:25, val_acc, color=&quot;red&quot;)) +
+  theme_bw() +
+  labs(title=&quot;Training and validation accuracy during training&quot;, 
+       x=&quot;Epoch&quot;, 
+       y=&quot;Accuracy&quot;, 
+       color=&quot;Dataset&quot;) +
+  scale_color_manual(labels=c(&quot;Training&quot;, &quot;Validation&quot;), values=c(&quot;blue&quot;, &quot;red&quot;)) + 
+  theme(plot.title=element_text(size=14, face=&quot;bold&quot;))</code></pre>
+<p><img src="results_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
+<pre class="r"><code>ggplot(data=loss, aes(1:25, train_loss, color=&quot;blue&quot;)) + 
+  geom_point() + 
+  geom_point(data=loss, aes(1:25, val_loss, color=&quot;red&quot;)) +
+  theme_bw() +
+  labs(title=&quot;Training and validation loss during training&quot;, 
+       x=&quot;Epoch&quot;, 
+       y=&quot;Loss&quot;, 
+       color=&quot;Dataset&quot;) +
+  scale_color_manual(labels=c(&quot;Training&quot;, &quot;Validation&quot;), values=c(&quot;blue&quot;, &quot;red&quot;)) + 
+  theme(plot.title=element_text(size=14, face=&quot;bold&quot;))</code></pre>
+<p><img src="results_files/figure-html/unnamed-chunk-13-2.png" width="960" /></p>
 </div>
 
 

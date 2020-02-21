@@ -68,6 +68,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -267,7 +268,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">STAT443 - Homework 2</a>
+      <a class="navbar-brand" href="index.html">Introduction to Neural Networks</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -281,9 +282,6 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="problem.html">Problem</a>
-    </li>
     <li>
       <a href="architectures.html">Architectures</a>
     </li>
@@ -321,22 +319,66 @@ $(document).ready(function () {
 </div>
 
 
-<p>This website was created to host a presentation for STAT443 - Linear Statistical Models - a University of Saskatchewan Statistics course. One of the assignments for the class encouraged students to explore different Statistics topics such as:</p>
-<ol style="list-style-type: decimal">
-<li>Bayesian Linear Regression;</li>
-<li>Decision Tree;</li>
-<li>Clustering Methods (K-Means);</li>
-<li>Support Vector Machines (SVM);</li>
-<li>A topic related to Machine Learning.</li>
-</ol>
-<p>Our group - Jennifer Lam, Braedan Walker, and Flaviu Vadan - decided to practice using the R Keras library for classifying images of different clothing items. The presentation is available on this website and is broken down by several categories:</p>
-<ol style="list-style-type: decimal">
-<li>An outline of the problem the group attempted to solve;</li>
-<li>An overview of different neural network architectures;</li>
-<li>A section on the linear algebra behind simple/fully-connected neural networks;</li>
-<li>A comparison against other methods identified in the literature;</li>
-<li>Applicability of the group’s approach towards classifying clothing items to other areas.</li>
-</ol>
+<p>Neural networks are a class of algorithms that are used to recognize patterns and learn representations of given data examples with the aim to learn a mapping between an input and an output. There are multiple techniques for training neural networks such as supervised, semi-supervised, and unsupervised. The technique we focused on using is supervised learning.</p>
+<p>Supervised learning aims to train a neural network to perform a specific task, such as classification, object detection, translation, etc., by passing a sample data point through the neural network and providing the answer at the same time. This way, the network has the opportunity to learn by computing the loss (difference) between the given output (correct answer) and its own (temporarily incorrect) output.</p>
+<p>One of the problems a neural network can solve is image classification. There are different types of classification that a neural network can perform, such as binary classification - only two possible classes - or classification of multiple options - more than two possible classes. Classification of multiple options can be applied to multiple problems such as classifying digits from 0 to 9, checking whether an image contains a cat or not, etc. For this assignment, the group focused on classifying images of different clothing types as represented in the MNIST dataset.</p>
+<div id="fashion-mnist-dataset" class="section level2">
+<h2>Fashion MNIST dataset</h2>
+<p>The Fashion MNIST data set supplied by the Keras R package provides 70000 grayscale, <span class="math inline">\(28 \times 28\)</span> pixel photos of clothing items that fall into one of ten classes:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>T-shirt/top</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Trouser</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Pullover</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Dress</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Coat</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Sandal</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Shirt</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Sneaker</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>Bag</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Ankle boot</td>
+</tr>
+</tbody>
+</table>
+<p>The pixels are then flattened into a <span class="math inline">\(784 \times 1\)</span> image which is then converted into a numerical observation by attaining the pixel intensity values (which will range from 0 to 255).</p>
+<p>You can find more information about the Fashion MNIST dataset <a href="https://github.com/zalandoresearch/fashion-mnist">here</a>.</p>
+<p>Neural networking, a supervised learning technique, aims to classify an observation into one of <span class="math inline">\(k\)</span> pre-specified groups given an extremely large vector of predictor variables (<span class="math inline">\(\vec{x}\)</span>). Using this method, we can build an algorithm that will be able to classify a random image (not trained upon) with its pre-specified class. Using our large vector of pixel intensity values that represent each image, we can partition the data set into training and testing sets. After the neural network uses the training data set to create its algorithm, we can verify its validity by running our testing observations through the network and calculate the loss function.</p>
+</div>
 
 
 
