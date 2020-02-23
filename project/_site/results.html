@@ -319,7 +319,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>One of the most popular high-level libraries for building machine learning models is Keras. In addition to Keras, we have also used ggplot2 for creating visualizations:</p>
+<p>One of the most popular high-level libraries for building machine learning models is <strong>Keras</strong>. In addition to Keras, we have also used ggplot2 for creating visualizations:</p>
 <div id="data-loading-and-preparation" class="section level5">
 <h5>Data loading and preparation</h5>
 <p>As covered in the Problem section, the group used the MNIST Fashion dataset for training a model to classify clothing items:</p>
@@ -367,7 +367,7 @@ print(p)</code></pre>
 </div>
 <div id="training" class="section level5">
 <h5>Training</h5>
-<p>Neural networks deal more gracefully with values that are scaled to be between 0 and 1. The reason is large ranges, such as 0 to 255, can cause large perturbations in the output of the network because the values are large:</p>
+<p><strong>Neural networks</strong> deal more gracefully with values that are scaled to be between 0 and 1. The reason is large ranges, such as 0 to 255, can cause large perturbations in the output of the network because the values are large:</p>
 <pre class="r"><code>train_images &lt;- train_images/255
 test_images &lt;- test_images/255</code></pre>
 <p>We can inspect a subset of the images to make sure they are in the expected format and have the correct labels based on visual inspection:</p>
@@ -389,7 +389,7 @@ model %&gt;%
     layer_dense(units=64, activation=&#39;relu&#39;)%&gt;%
     layer_dropout(0.2) %&gt;%
     layer_dense(units=10, activation=&#39;softmax&#39;)</code></pre>
-<p>After establishing the layers, and during the compilation of the model, we must include some preliminary steps: the loss function, optimizer, and metrics. The loss function measure the difference between a given true label and the prediction of the network. The model uses the optimizer to update itself based on the data and loss function; adam specifically uses a gradient-based optimization . Metrics are what monitor the training and testing steps.</p>
+<p>After establishing the layers, and during the compilation of the model, we must include some preliminary steps: <strong>the loss function, optimizer, and metrics</strong>. The <em>loss function</em> measure the difference between a given true label and the prediction of the network. The model uses the <em>optimizer</em> to update itself based on the data and loss function; adam specifically uses a <em>gradient-based optimization</em>. <em>Metrics</em> are what monitor the training and testing steps.</p>
 <pre class="r"><code>model %&gt;% compile(optimizer=&#39;adam&#39;,
                   loss=&#39;sparse_categorical_crossentropy&#39;,
                   metrics=c(&#39;accuracy&#39;))</code></pre>
@@ -405,7 +405,7 @@ model %&gt;%
 <p>After training the model, we can make some predictions with the set of test images (i.e., the model predicts the label for each image in correspondence to the 10 classes we had previously outlined). The highest value in the output distribution is what tells us what the model’s prediction is.</p>
 <pre class="r"><code>prediction &lt;- model %&gt;% predict_classes(test_images)
 prediction[1:20]</code></pre>
-<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 5 3 4 1 2 2 8 0</code></pre>
+<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 2 8 0</code></pre>
 <pre class="r"><code>test_labels[1:20]</code></pre>
 <pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 4 8 0</code></pre>
 <p>For our last trick, we show the prediction results from a subset of the data visually. Correct predictions will show up with green text and wrong predictions will be shown with red text.</p>

@@ -327,13 +327,13 @@ $(document).ready(function () {
 <p>This process is then repeated until the input is reduced to a vector that is <span class="math inline">\(k \times 1\)</span> (one element for each group that we wish to classify each observation into).</p>
 <p>At each layer, the output of a node is taken after its input passed through an activation function. Activation functions (also known as transfer functions) are used in neural networks primarily to sort the final result in a manner that can bring comparisons between classes into a clear solution. We can think of an activation function as determining whether a signal gets propagated through a network or not and to what magnitude is it propagated. Some of the activations used in the group’s implementation are:</p>
 <ol style="list-style-type: decimal">
-<li>Rectified linear units (ReLU): <span class="math inline">\(R(z) = max(0, z)\)</span>;</li>
-<li>Sigmoid: <span class="math inline">\(S(x) = \frac{1}{1+e^{-x}}\)</span></li>
+<li><strong>Rectified linear units</strong> (ReLU): <span class="math inline">\(R(z) = max(0, z)\)</span>;</li>
+<li><strong>Sigmoid</strong>: <span class="math inline">\(S(x) = \frac{1}{1+e^{-x}}\)</span></li>
 </ol>
 <p>The final layer of the neural network uses a softmax activation function to create an output distribution over the classes the network attempts to classify.</p>
 <p><span class="math display">\[ \sigma(z)_j = \frac{e^{z_j}}{\sum_{i=1}^k e^{z_i}} for j = 1, ..., k\]</span></p>
-<p>The softmax takes each activation from the previous layer and divides it by the summed total of activations, which creates a value in the range [0, 1] for each class. The predicted class label corresponds to the highest value in the output distribution of the network e.g if index 1 in the SoftMax output contains the highest value, the prediction will be 1, which corresponds to a specific class.</p>
-<p>The reasoning behind using the SoftMax function is because it is differentiable. Given the function is differentiable, the network can attempt to minimize the difference between the empirical distribution, which is defined by the training dataset, and the model distribution, which is defined by its output. For more details about minimizing the difference between the output distribution and the model distribution, read about <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler</a> divergence!</p>
+<p>The <strong>softmax</strong> takes each activation from the previous layer and divides it by the summed total of activations, which creates a value in the range [0, 1] for each class. The predicted class label corresponds to the highest value in the output distribution of the network e.g if index 1 in the SoftMax output contains the highest value, the prediction will be 1, which corresponds to a specific class.</p>
+<p>The reasoning behind using the softmax function is because it is <strong>differentiable</strong>. Given the function is differentiable, the network can attempt to minimize the difference between the empirical distribution, which is defined by the training dataset, and the model distribution, which is defined by its output. For more details about minimizing the difference between the output distribution and the model distribution, read about <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler</a> divergence!</p>
 
 
 
