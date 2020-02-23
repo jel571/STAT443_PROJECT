@@ -1,5 +1,6 @@
 ---
 title: Introduction
+author: "Jennifer Lam, Braedan Walker, Flaviu Vadan"
 output: 
     html_document:
         css: styles.css
@@ -9,20 +10,20 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Neural networks are a class of algorithms that are used to recognize patterns
+**Neural networks** are a class of algorithms that are used to recognize patterns
 and learn representations of given data examples with the aim to learn a mapping
 between an input and an output. There are multiple techniques for training
-neural networks such as supervised, semi-supervised, and unsupervised. The
+neural networks such as *supervised*, *semi-supervised*, and *unsupervised*. The
 technique we focused on using is supervised learning.
 
-Supervised learning aims to train a neural network to perform a specific task,
+**Supervised learning** aims to train a neural network to perform a specific task,
 such as classification, object detection, translation, etc., by passing a sample
 data point through the neural network and providing the answer at the same time.
 This way, the network has the opportunity to learn by computing the loss
 (difference) between the given output (correct answer) and its own (temporarily
   incorrect) output.
 
-One of the problems a neural network can solve is image classification. There
+One of the problems a neural network can solve is **image classification.** There
 are different types of classification that a neural network can perform, such
 as binary classification - only two possible classes - or classification of
 multiple options - more than two possible classes. Classification of multiple
@@ -33,7 +34,7 @@ represented in the MNIST dataset.
 
 ## Fashion MNIST dataset
 
-The Fashion MNIST data set supplied by the Keras R package provides 70000
+The Fashion MNIST data set supplied by the **Keras** R package provides 70000
 grayscale, $28 \times 28$ pixel photos of clothing items that fall into one of
 ten classes:
 
@@ -57,7 +58,7 @@ converted into a numerical observation by attaining the pixel intensity values
 You can find more information about the Fashion MNIST dataset [here](https://github.com/zalandoresearch/fashion-mnist).
 
 
-Neural networking, a supervised learning technique, aims to classify an
+**Neural networks**, a *supervised learning technique*, aims to classify an
 observation into one of $k$ pre-specified groups given an extremely large vector
 of predictor variables ($\vec{x}$). Using this method, we can build an algorithm
 that will be able to classify a random image (not trained upon) with its

@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 One of the most popular high-level libraries for building machine learning
-models is Keras. In addition to Keras, we have also used ggplot2 for creating
+models is **Keras**. In addition to Keras, we have also used ggplot2 for creating
 visualizations:
 ```{r, echo=FALSE}
 library(keras)
@@ -78,7 +78,7 @@ print(p)
 
 ##### Training 
 
-Neural networks deal more gracefully with values that are scaled to be between 0
+**Neural networks** deal more gracefully with values that are scaled to be between 0
 and 1. The reason is large ranges, such as 0 to 255, can cause large
 perturbations in the output of the network because the values are large:
 ```{r}
@@ -116,11 +116,11 @@ model %>%
 ```
 
 After establishing the layers, and during the compilation of the model, we must
-include some preliminary steps: the loss function, optimizer, and metrics. The
-loss function measure the difference between a given true label and the
-prediction of the network. The model uses the optimizer to update itself based
-on the data and loss function; adam specifically uses a gradient-based
-optimization . Metrics are what monitor the training and testing steps.
+include some preliminary steps: **the loss function, optimizer, and metrics**. The
+*loss function* measure the difference between a given true label and the
+prediction of the network. The model uses the *optimizer* to update itself based
+on the data and loss function; adam specifically uses a *gradient-based
+optimization*. *Metrics* are what monitor the training and testing steps.
 ```{r}
 model %>% compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
