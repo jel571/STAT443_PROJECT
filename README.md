@@ -1,5 +1,7 @@
 # STAT443 - Project masterplan
+
 ### Presentation requirements
+
 1. Description of the problem
   * Given an extreme amount of predictors and a discrete amount of classes as our response, we want to build a process that can detect which class a given observation belongs to given all X_i's.
 1. NN architectures
