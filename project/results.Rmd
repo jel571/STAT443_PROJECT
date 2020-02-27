@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 One of the most popular high-level libraries for building machine learning
 models is **Keras**. In addition to Keras, we have also used ggplot2 for creating
@@ -131,13 +132,17 @@ model %>% compile(optimizer='adam',
 
 With all of this set up, we are finally able to train our neural network. The
 "epochs" option determine how many cycles we let the network train upon. Here,
-we will train the network 10 times. At the end of each epoch, keras will update
-us on the loss and accuracy of each run as well as validation scores of our
-testing data set.
+we will train the network for 50 epochs. However, after 25 epochs, we notice
+the performance of the network degrading on the validation dataset, which
+is potentially caused by overfitting. Twenty fice epochs should be sufficient
+for getting a network that performs well. We can obtain metrics such
+as accuracy and loss while the netowkr is training; this option can be turned
+off by setting the keyword argument **verbose=FALSE**.
 
 ```{r}
+epochs <- 50
 history <- model %>% fit(train_images, train_labels,
-                         epochs=25,
+                         epochs=epochs,
                          batch_size=128,
                          validation_data=list(test_images, test_labels),
                          view_metrics=FALSE)
@@ -161,7 +166,7 @@ will be shown with red text.
 ```{r}
 par(mfcol=c(5,5))
 par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
-for (i in 1:25) {
+for (i in 1:epochs) {
   img <- test_images[i, , ]
   img <- t(apply(img, 2, rev))
   if (prediction[i] == test_labels[i]) {
@@ -187,25 +192,27 @@ val_loss <- history$metrics$val_loss
 acc <- data.frame(train_acc=train_acc, val_acc=val_acc)
 loss <- data.frame(train_loss=train_loss, val_loss=val_loss)
 
-ggplot(data=acc, aes(1:25, train_acc, color="blue")) + 
-  geom_point() + 
-  geom_point(data=acc, aes(1:25, val_acc, color="red")) +
+ggplot(data=acc, aes(1:epochs, train_acc, color="blue")) + 
+  geom_point() + # Starman, this is weird
+  geom_point(data=acc, aes(1:epochs, val_acc, color="red")) +
   theme_classic() +
+  geom_vline(xintercept=epochs/2, linetype="dotted", color="black", size=1.5) +
   labs(title="Training and validation accuracy during training", 
        x="Epoch", 
        y="Accuracy", 
        color="Dataset") +
   scale_color_manual(labels=c("Training", "Validation"), values=c("blue", "red")) + 
-  theme(plot.title=element_text(size=14, face="bold"))
+  theme(plot.title=element_text(size=20, face="bold"))
 
-ggplot(data=loss, aes(1:25, train_loss, color="blue")) + 
-  geom_point() + 
-  geom_point(data=loss, aes(1:25, val_loss, color="red")) +
+ggplot(data=loss, aes(1:epochs, train_loss, color="blue")) + 
+  geom_point() + # Starman, this is weird
+  geom_point(data=loss, aes(1:epochs, val_loss, color="red")) +
   theme_classic() +
+  geom_vline(xintercept=epochs/2, linetype="dotted", color="black", size=1.5) +
   labs(title="Training and validation loss during training", 
        x="Epoch", 
        y="Loss", 
        color="Dataset") +
   scale_color_manual(labels=c("Training", "Validation"), values=c("blue", "red")) + 
-  theme(plot.title=element_text(size=14, face="bold"))
+  theme(plot.title=element_text(size=20, face="bold"))
 ```

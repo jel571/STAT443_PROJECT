@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 #### The uses of ANNs are far reaching and interdisciplinary
 Using **artificial neural networks**, we can greatly reduce the time spent on having

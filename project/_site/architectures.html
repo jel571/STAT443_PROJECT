@@ -322,18 +322,26 @@ $(document).ready(function () {
 <p>
  
 </p>
-<p>Multiple types of <strong>neural network architectures</strong> have been proposed. Some examples are:</p>
+<p>
+ 
+</p>
+<p>Multiple types of <strong>neural network architectures</strong> have been proposed for image classification. Some examples are:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Recurrent neural networks</strong> - networks that have recurrent connections between nodes;</li>
-<li><strong>Convolution neural networks</strong> - networks that replace the dot product with a convolution operation that summarizes multiple elements from an input, e.g pixels;</li>
-<li><strong>Capsule networks</strong> - use capsules, which are collections of nodes, instead of independent network nodes;</li>
-<li><a href="https://www.asimovinstitute.org/neural-network-zoo/">Others</a>.</li>
+<li><strong>Convolution neural networks</strong> - networks that replace the dot product with a convolution operation that summarizes multiple elements from an input, e.g pixels; <img src="conv.gif" alt="Credit: Adrian Rosebrock on pyimagesearch" /></li>
+<li><strong>Capsule networks</strong> - use capsules, which are collections of nodes, instead of independent network nodes. <img src="capsule.png" alt="Credit: Kwon-Woo Ha on ResearchGate" /></li>
 </ol>
-<p>The group decided to use a simple <em>feed-forward neural network</em>, which uses nodes that are fully connected between layers. The decision to use a simple network is two-fold:</p>
+<p>The group decided to use a simple <strong>feed-forward neural network</strong>, which uses nodes that are fully connected between layers. The decision to use a simple network is two-fold:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Simplicity</strong> - although the model itself can be come complex due to the high number of parameters, the group does not have to be concerned with models that have very complex architectures;</li>
 <li><strong>Ease of implementation</strong> - a neural network that follows a simple architecture is typically easier to implement by comparison to networks that have skip connections (node connections that skip layers), recurrent relations (a node’s output is placed back into the node), etc.</li>
 </ol>
+<p>
+ 
+</p>
+<img src="ANN.jpg" />
+<p>
+ 
+</p>
 <p>As mentioned, the group decided to use a feed-forward neural network. The network was configured to flatten the <span class="math inline">\(28 \times 28\)</span> to a vector of 784 values. The second and third layer were configured to use 512 nodes. Finally, the output of the network was structured to use 10 nodes as the number of classes in the MNIST Fashion dataset is 10. The following represents a summary of the network architecture:</p>
 <table>
 <thead>
@@ -361,10 +369,6 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<div class="figure">
-<img src="ANN.jpg" alt="Photo courtesy of Jennifer Lam" />
-<p class="caption">Photo courtesy of Jennifer Lam</p>
-</div>
 
 
 

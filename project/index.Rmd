@@ -4,6 +4,8 @@ author: "Jennifer Lam, Braedan Walker, Flaviu Vadan"
 output: 
     html_document:
         css: styles.css
+        fig_width: 10
+        fig_height: 9
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +23,7 @@ of neurons that take in an input (electrical signal) and compute an activation
 (stimulus). Based on whether the activaiton passes a threshold, the neurons fire 
 off another signal to subsequent connections (dendrites).
 
-![]()
+<img src="neuron.png" alt="drawing" style="width:850px; height:400px;"/>
 
 There are multiple techniques for training neural networks such as *supervised*, 
 *semi-supervised*, and *unsupervised*. The technique we focused on using is 
@@ -61,8 +63,8 @@ ten classes:
 | 8     | Bag         |
 | 9     | Ankle boot  |
 
-The pixels are then flattened into a $784 \times 1$ image which is then
-converted into a numerical observation by analyzing the pixel intensity values
-(which will range from 0 to 255).
+The pixels are then flattened into a $784 \times 1$ vector. The vector is then
+converted into a numerical observation by passing the pixel intensity values
+(which will range from 0 to 1) through the network.
 
 You can find more information about the Fashion MNIST dataset [here](https://github.com/zalandoresearch/fashion-mnist).

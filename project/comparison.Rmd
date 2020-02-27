@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 #### Convolutional neural networks
 An algorithm that would have been *better suited* to identifying images would be

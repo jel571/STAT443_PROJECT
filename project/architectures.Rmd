@@ -3,6 +3,8 @@ title: 2. Architectures
 output: 
     html_document:
         css: styles.css
+        fig_width: 10
+        fig_height: 9        
 ---
 
 ```{r setup, include=FALSE}
@@ -10,20 +12,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
-Multiple types of **neural network architectures** have been proposed. Some examples
-are:
+Multiple types of **neural network architectures** have been proposed for 
+image classification. Some examples are:
 
-1. **Recurrent neural networks** - networks that have recurrent connections
-between nodes;
 1. **Convolution neural networks** - networks that replace the dot product with a
 convolution operation that summarizes multiple elements from an input, e.g
 pixels;
+![Credit: Adrian Rosebrock on pyimagesearch](./conv.gif)
 1. **Capsule networks** - use capsules, which are collections of nodes, instead of
-independent network nodes;
-1. [Others](https://www.asimovinstitute.org/neural-network-zoo/).
+independent network nodes.
+![Credit: Kwon-Woo Ha on ResearchGate](./capsule.png)
 
-The group decided to use a simple *feed-forward neural network*, which uses nodes
+The group decided to use a simple **feed-forward neural network**, which uses nodes
 that are fully connected between layers. The decision to use a simple network
 is two-fold:
 
@@ -34,6 +36,10 @@ have very complex architectures;
 is typically easier to implement by comparison to networks that have skip
 connections (node connections that skip layers), recurrent relations (a node's
 output is placed back into the node), etc.
+
+<p>&nbsp;</p>
+![](./ANN.jpg)
+<p>&nbsp;</p>
 
 As mentioned, the group decided to use a feed-forward neural network. The
 network was configured to flatten the $28 \times 28$ to a vector of 784 values.
@@ -48,6 +54,3 @@ architecture:
 | 1     | (784, 512) |
 | 2     | (512, 10)  |
 | 3     | (10, 1)    |
-
-
-![Photo courtesy of Jennifer Lam](./ANN.jpg)

@@ -322,6 +322,9 @@ $(document).ready(function () {
 <p>
  
 </p>
+<p>
+ 
+</p>
 <p>One of the most popular high-level libraries for building machine learning models is <strong>Keras</strong>. In addition to Keras, we have also used ggplot2 for creating visualizations:</p>
 <div id="data-loading-and-preparation" class="section level5">
 <h5>Data loading and preparation</h5>
@@ -396,9 +399,10 @@ model %&gt;%
 <pre class="r"><code>model %&gt;% compile(optimizer=&#39;adam&#39;,
                   loss=&#39;sparse_categorical_crossentropy&#39;,
                   metrics=c(&#39;accuracy&#39;))</code></pre>
-<p>With all of this set up, we are finally able to train our neural network. The “epochs” option determine how many cycles we let the network train upon. Here, we will train the network 10 times. At the end of each epoch, keras will update us on the loss and accuracy of each run as well as validation scores of our testing data set.</p>
-<pre class="r"><code>history &lt;- model %&gt;% fit(train_images, train_labels,
-                         epochs=25,
+<p>With all of this set up, we are finally able to train our neural network. The “epochs” option determine how many cycles we let the network train upon. Here, we will train the network for 50 epochs. However, after 25 epochs, we notice the performance of the network degrading on the validation dataset, which is potentially caused by overfitting. Twenty fice epochs should be sufficient for getting a network that performs well. We can obtain metrics such as accuracy and loss while the netowkr is training; this option can be turned off by setting the keyword argument <strong>verbose=FALSE</strong>.</p>
+<pre class="r"><code>epochs &lt;- 50
+history &lt;- model %&gt;% fit(train_images, train_labels,
+                         epochs=epochs,
                          batch_size=128,
                          validation_data=list(test_images, test_labels),
                          view_metrics=FALSE)</code></pre>
@@ -414,7 +418,7 @@ prediction[1:20]</code></pre>
 <p>For our last trick, we show the prediction results from a subset of the data visually. Correct predictions will show up with green text and wrong predictions will be shown with red text.</p>
 <pre class="r"><code>par(mfcol=c(5,5))
 par(mar=c(0, 0, 1.5, 0), xaxs=&#39;i&#39;, yaxs=&#39;i&#39;)
-for (i in 1:25) {
+for (i in 1:epochs) {
   img &lt;- test_images[i, , ]
   img &lt;- t(apply(img, 2, rev))
   if (prediction[i] == test_labels[i]) {
@@ -427,7 +431,7 @@ for (i in 1:25) {
                       classes[test_labels[i] + 1], &quot;)&quot;),
         col.main = color)
 }</code></pre>
-<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" width="960" /></p>
+<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" width="960" /><img src="results_files/figure-html/unnamed-chunk-12-2.png" width="960" /></p>
 </div>
 <div id="sample-accuracy-and-loss-plots-from-the-training-process" class="section level5">
 <h5>Sample accuracy and loss plots from the training process</h5>
@@ -439,10 +443,11 @@ val_loss &lt;- history$metrics$val_loss
 acc &lt;- data.frame(train_acc=train_acc, val_acc=val_acc)
 loss &lt;- data.frame(train_loss=train_loss, val_loss=val_loss)
 
-ggplot(data=acc, aes(1:25, train_acc, color=&quot;blue&quot;)) + 
-  geom_point() + 
-  geom_point(data=acc, aes(1:25, val_acc, color=&quot;red&quot;)) +
-  theme_bw() +
+ggplot(data=acc, aes(1:epochs, train_acc, color=&quot;blue&quot;)) + 
+  geom_point() + # Starman, this is weird
+  geom_point(data=acc, aes(1:epochs, val_acc, color=&quot;red&quot;)) +
+  theme_classic() +
+  geom_vline(xintercept=epochs/2, linetype=&quot;dotted&quot;, color=&quot;black&quot;, size=2) +
   labs(title=&quot;Training and validation accuracy during training&quot;, 
        x=&quot;Epoch&quot;, 
        y=&quot;Accuracy&quot;, 
@@ -450,10 +455,11 @@ ggplot(data=acc, aes(1:25, train_acc, color=&quot;blue&quot;)) +
   scale_color_manual(labels=c(&quot;Training&quot;, &quot;Validation&quot;), values=c(&quot;blue&quot;, &quot;red&quot;)) + 
   theme(plot.title=element_text(size=14, face=&quot;bold&quot;))</code></pre>
 <p><img src="results_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
-<pre class="r"><code>ggplot(data=loss, aes(1:25, train_loss, color=&quot;blue&quot;)) + 
-  geom_point() + 
-  geom_point(data=loss, aes(1:25, val_loss, color=&quot;red&quot;)) +
-  theme_bw() +
+<pre class="r"><code>ggplot(data=loss, aes(1:epochs, train_loss, color=&quot;blue&quot;)) + 
+  geom_point() + # Starman, this is weird
+  geom_point(data=loss, aes(1:epochs, val_loss, color=&quot;red&quot;)) +
+  theme_classic() +
+  geom_vline(xintercept=epochs/2, linetype=&quot;dotted&quot;, color=&quot;black&quot;, size=2) +
   labs(title=&quot;Training and validation loss during training&quot;, 
        x=&quot;Epoch&quot;, 
        y=&quot;Loss&quot;, 

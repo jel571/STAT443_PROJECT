@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 The input to the network is an initial vector of predictor variables ($\vec{x}$)
 . The main operation that passes the input through the network is a simple dot
