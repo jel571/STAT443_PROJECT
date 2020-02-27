@@ -387,9 +387,9 @@ for(i in 42:66) {
 <pre class="r"><code>model &lt;- keras_model_sequential()
 model %&gt;%
     layer_flatten(input_shape=c(28, 28)) %&gt;%
-    layer_dense(units=128, activation=&#39;sigmoid&#39;) %&gt;%
+    layer_dense(units=512, activation=&#39;sigmoid&#39;) %&gt;%
     layer_dropout(0.2) %&gt;%
-    layer_dense(units=64, activation=&#39;relu&#39;)%&gt;%
+    layer_dense(units=512, activation=&#39;relu&#39;)%&gt;%
     layer_dropout(0.2) %&gt;%
     layer_dense(units=10, activation=&#39;softmax&#39;)</code></pre>
 <p>After establishing the layers, and during the compilation of the model, we must include some preliminary steps: <strong>the loss function, optimizer, and metrics</strong>. The <em>loss function</em> measure the difference between a given true label and the prediction of the network. The model uses the <em>optimizer</em> to update itself based on the data and loss function; adam specifically uses a <em>gradient-based optimization</em>. <em>Metrics</em> are what monitor the training and testing steps.</p>
@@ -408,7 +408,7 @@ model %&gt;%
 <p>After training the model, we can make some predictions with the set of test images (i.e., the model predicts the label for each image in correspondence to the 10 classes we had previously outlined). The highest value in the output distribution is what tells us what the model’s prediction is.</p>
 <pre class="r"><code>prediction &lt;- model %&gt;% predict_classes(test_images)
 prediction[1:20]</code></pre>
-<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 2 8 0</code></pre>
+<pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 5 3 4 1 2 2 8 0</code></pre>
 <pre class="r"><code>test_labels[1:20]</code></pre>
 <pre><code>##  [1] 9 2 1 1 6 1 4 6 5 7 4 5 7 3 4 1 2 4 8 0</code></pre>
 <p>For our last trick, we show the prediction results from a subset of the data visually. Correct predictions will show up with green text and wrong predictions will be shown with red text.</p>

@@ -110,9 +110,9 @@ the final layer of ten values:
 model <- keras_model_sequential()
 model %>%
     layer_flatten(input_shape=c(28, 28)) %>%
-    layer_dense(units=128, activation='sigmoid') %>%
+    layer_dense(units=512, activation='sigmoid') %>%
     layer_dropout(0.2) %>%
-    layer_dense(units=64, activation='relu')%>%
+    layer_dense(units=512, activation='relu')%>%
     layer_dropout(0.2) %>%
     layer_dense(units=10, activation='softmax')
 ```
@@ -190,7 +190,7 @@ loss <- data.frame(train_loss=train_loss, val_loss=val_loss)
 ggplot(data=acc, aes(1:25, train_acc, color="blue")) + 
   geom_point() + 
   geom_point(data=acc, aes(1:25, val_acc, color="red")) +
-  theme_bw() +
+  theme_classic() +
   labs(title="Training and validation accuracy during training", 
        x="Epoch", 
        y="Accuracy", 
@@ -201,7 +201,7 @@ ggplot(data=acc, aes(1:25, train_acc, color="blue")) +
 ggplot(data=loss, aes(1:25, train_loss, color="blue")) + 
   geom_point() + 
   geom_point(data=loss, aes(1:25, val_loss, color="red")) +
-  theme_bw() +
+  theme_classic() +
   labs(title="Training and validation loss during training", 
        x="Epoch", 
        y="Loss", 

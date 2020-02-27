@@ -11,28 +11,36 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 **Neural networks** are a class of algorithms that are used to recognize patterns
-and learn representations of given data examples with the aim to learn a mapping
-between an input and an output. There are multiple techniques for training
-neural networks such as *supervised*, *semi-supervised*, and *unsupervised*. The
-technique we focused on using is supervised learning.
+and learn representations of given data examples with the aim of learning a mapping
+between an input and an output. They are modeled after the biological neurons of 
+the human brain. Neural networks are based on the general idea of having a collection
+of neurons that take in an input (electrical signal) and compute an activation 
+(stimulus). Based on whether the activaiton passes a threshold, the neurons fire 
+off another signal to subsequent connections (dendrites).
+
+![]()
+
+There are multiple techniques for training neural networks such as *supervised*, 
+*semi-supervised*, and *unsupervised*. The technique we focused on using is 
+supervised learning.
 
 **Supervised learning** aims to train a neural network to perform a specific task,
-such as classification, object detection, translation, etc., by passing a sample
+such as classification and object detection by passing a sample
 data point through the neural network and providing the answer at the same time.
 This way, the network has the opportunity to learn by computing the loss
-(difference) between the given output (correct answer) and its own (temporarily
-  incorrect) output.
+(difference) between the given output (correct answer) and its own (temporarily 
+incorrect) output.
 
 One of the problems a neural network can solve is **image classification.** There
 are different types of classification that a neural network can perform, such
 as binary classification - only two possible classes - or classification of
-multiple options - more than two possible classes. Classification of multiple
-options can be applied to multiple problems such as classifying digits from 0 to
-9, checking whether an image contains a cat or not, etc. For this assignment,
-the group focused on classifying images of different clothing types as
-represented in the MNIST dataset.
+multiple categories - more than two possible classes. Classification of multiple
+categories can be applied to numerous problems such as classifying digits from 0 to
+9, checking whether an image contains a cat or not, etc. This tutorial focuses
+on classifying images of different clothing types.
 
 ## Fashion MNIST dataset
 
@@ -54,18 +62,7 @@ ten classes:
 | 9     | Ankle boot  |
 
 The pixels are then flattened into a $784 \times 1$ image which is then
-converted into a numerical observation by attaining the pixel intensity values
+converted into a numerical observation by analyzing the pixel intensity values
 (which will range from 0 to 255).
 
 You can find more information about the Fashion MNIST dataset [here](https://github.com/zalandoresearch/fashion-mnist).
-
-
-**Neural networks**, a *supervised learning technique*, aims to classify an
-observation into one of $k$ pre-specified groups given an extremely large vector
-of predictor variables ($\vec{x}$). Using this method, we can build an algorithm
-that will be able to classify a random image (not trained upon) with its
-pre-specified class. Using our large vector of pixel intensity values that
-represent each image, we can partition the data set into training and testing
-sets. After the neural network uses the training data set to create its
-algorithm, we can verify its validity by running our testing observations
-through the network and calculate the loss function.
