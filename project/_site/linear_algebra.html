@@ -11,7 +11,7 @@
 
 
 
-<title>Linear Algebra</title>
+<title>3. Linear Algebra</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -314,11 +314,14 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Linear Algebra</h1>
+<h1 class="title toc-ignore">3. Linear Algebra</h1>
 
 </div>
 
 
+<p>
+ 
+</p>
 <p>The input to the network is an initial vector of predictor variables (<span class="math inline">\(\vec{x}\)</span>) . The main operation that passes the input through the network is a simple dot product between a layer’s node output values and the weights of the edges between the nodes of layer <span class="math inline">\(i\)</span> and layer <span class="math inline">\(i+1\)</span>. Each element that is an input to layer <span class="math inline">\(i\)</span> is a linear combination of all the outputs of layer <span class="math inline">\(i-1\)</span> and the weights between <span class="math inline">\(i\)</span> and <span class="math inline">\(i-1\)</span>. The weights are the parameters the network is trying to learn.</p>
 <p>As an example, the input layer represents an <span class="math inline">\(m \times 1\)</span> dimensional vector (<span class="math inline">\(\vec{l}_1\)</span>). In order to create the activations of the next layer, the network needs to take the dot product of <span class="math inline">\(\vec{l}_1\)</span> and the matrix of weights <span class="math inline">\(\textbf{W}\)</span>:</p>
 <p><span class="math display">\[ \vec{x}^T \textbf{W} = \vec{a}_1^T \]</span></p>

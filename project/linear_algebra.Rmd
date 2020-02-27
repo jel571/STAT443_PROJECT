@@ -1,5 +1,5 @@
 ---
-title: Linear Algebra
+title: 3. Linear Algebra
 output: 
     html_document:
         css: styles.css
@@ -9,6 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<p>&nbsp;</p>
 
 The input to the network is an initial vector of predictor variables ($\vec{x}$)
 . The main operation that passes the input through the network is a simple dot

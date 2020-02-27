@@ -1,5 +1,5 @@
 ---
-title: Comparison
+title: 5. Comparison
 output: 
     html_document:
         css: styles.css
@@ -8,6 +8,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<p>&nbsp;</p>
 
 #### Convolutional neural networks
 An algorithm that would have been *better suited* to identifying images would be

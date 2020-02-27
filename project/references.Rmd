@@ -1,9 +1,11 @@
 ---
-title: References
+title: 7. References
 output: 
     html_document:
         css: styles.css
 ---
+
+<p>&nbsp;</p>
 
 Here is a list of references we have used for completing this assignment:
 

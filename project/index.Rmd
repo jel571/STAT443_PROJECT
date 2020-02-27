@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: 1. Introduction
 author: "Jennifer Lam, Braedan Walker, Flaviu Vadan"
 output: 
     html_document:
@@ -9,6 +9,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<p>&nbsp;</p>
 
 **Neural networks** are a class of algorithms that are used to recognize patterns
 and learn representations of given data examples with the aim to learn a mapping

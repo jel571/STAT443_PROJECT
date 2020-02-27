@@ -1,5 +1,5 @@
 ---
-title: Results
+title: 4. Results
 output: 
     html_document:
         css: styles.css
@@ -10,6 +10,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<p>&nbsp;</p>
 
 One of the most popular high-level libraries for building machine learning
 models is **Keras**. In addition to Keras, we have also used ggplot2 for creating

@@ -1,5 +1,5 @@
 ---
-title: Architectures
+title: 2. Architectures
 output: 
     html_document:
         css: styles.css
@@ -8,6 +8,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<p>&nbsp;</p>
 
 Multiple types of **neural network architectures** have been proposed. Some examples
 are:

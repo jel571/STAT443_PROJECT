@@ -1,5 +1,5 @@
 ---
-title: Applicability
+title: 6. Applicability
 output: 
     html_document:
         css: styles.css
@@ -8,6 +8,9 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<p>&nbsp;</p>
+
 #### The uses of ANNs are far reaching and interdisciplinary
 Using **artificial neural networks**, we can greatly reduce the time spent on having
 radiologists identify between benign and malignant microcalcifications and with
