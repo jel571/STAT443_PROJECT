@@ -386,7 +386,7 @@ for(i in 42:66) {
           main=paste(classes[train_labels[i] + 1]))
 }</code></pre>
 <p><img src="results_files/figure-html/unnamed-chunk-7-1.png" width="960" /></p>
-<p>Now, we begin to build our model and establish our layers, which will start by shrinking the first layer into 32 values. After this layer has been evaluated by the sigmoid activation function, it will produce another level of 32 values, which goes through a different activation function (ReLU) before being sent to the final layer of ten values:</p>
+<p>Now, we begin to build our model and establish our layers, which will start by shrinking the first layer into 512 values. After this layer has been evaluated by the sigmoid activation function, it will produce another level of 512 values, which goes through a different activation function (ReLU) before being sent to the final layer of ten values:</p>
 <pre class="r"><code>model &lt;- keras_model_sequential()
 model %&gt;%
     layer_flatten(input_shape=c(28, 28)) %&gt;%
@@ -447,26 +447,27 @@ ggplot(data=acc, aes(1:epochs, train_acc, color=&quot;blue&quot;)) +
   geom_point() + # Starman, this is weird
   geom_point(data=acc, aes(1:epochs, val_acc, color=&quot;red&quot;)) +
   theme_classic() +
-  geom_vline(xintercept=epochs/2, linetype=&quot;dotted&quot;, color=&quot;black&quot;, size=2) +
+  geom_vline(xintercept=epochs/2, linetype=&quot;dotted&quot;, color=&quot;black&quot;, size=1.5) +
   labs(title=&quot;Training and validation accuracy during training&quot;, 
        x=&quot;Epoch&quot;, 
        y=&quot;Accuracy&quot;, 
        color=&quot;Dataset&quot;) +
   scale_color_manual(labels=c(&quot;Training&quot;, &quot;Validation&quot;), values=c(&quot;blue&quot;, &quot;red&quot;)) + 
-  theme(plot.title=element_text(size=14, face=&quot;bold&quot;))</code></pre>
+  theme(plot.title=element_text(size=20, face=&quot;bold&quot;))</code></pre>
 <p><img src="results_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
 <pre class="r"><code>ggplot(data=loss, aes(1:epochs, train_loss, color=&quot;blue&quot;)) + 
   geom_point() + # Starman, this is weird
   geom_point(data=loss, aes(1:epochs, val_loss, color=&quot;red&quot;)) +
   theme_classic() +
-  geom_vline(xintercept=epochs/2, linetype=&quot;dotted&quot;, color=&quot;black&quot;, size=2) +
+  geom_vline(xintercept=epochs/2, linetype=&quot;dotted&quot;, color=&quot;black&quot;, size=1.5) +
   labs(title=&quot;Training and validation loss during training&quot;, 
        x=&quot;Epoch&quot;, 
        y=&quot;Loss&quot;, 
        color=&quot;Dataset&quot;) +
   scale_color_manual(labels=c(&quot;Training&quot;, &quot;Validation&quot;), values=c(&quot;blue&quot;, &quot;red&quot;)) + 
-  theme(plot.title=element_text(size=14, face=&quot;bold&quot;))</code></pre>
+  theme(plot.title=element_text(size=20, face=&quot;bold&quot;))</code></pre>
 <p><img src="results_files/figure-html/unnamed-chunk-13-2.png" width="960" /></p>
+<p>The plot of training and validation accuracy showcases how accuracy increases during training. Similarly, the plot of trianing and validation loss showcases how loss suggesting the network is getting better at minimizing the difference between a true answer and a predicted answer. The increase in accuracy and the decrease in loss are both consequence of the network getting better as training progresses. During trials, we found that training for 25 epochs is sufficient - the optimal epoch limit is marked in the plots.</p>
 </div>
 
 
