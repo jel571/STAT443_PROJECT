@@ -20,19 +20,19 @@ layer $i$ is a linear combination of all the outputs of layer $i-1$ and the
 weights between $i$ and $i-1$. The weights are the parameters the network is
 trying to learn.
 
-As an example, the input layer represents an $m \times 1$ dimensional vector
-($\vec{l}_1$). In order to create the activations of the next layer, the network
-needs to take the dot product of $\vec{l}_1$ and the matrix of weights
-$\textbf{W}$:
+The input layer represents an $m \times 1$ dimensional vector
+($\vec{a}_{i-1}$). In order to create the activations of the next layer, the network
+needs to take the dot product of $\vec{a}_{i-1}$ and the matrix of weights
+$\textbf{W}_i$:
 
-$$ \vec{x}^T \textbf{W} = \vec{a}_1^T $$
+$$\vec{a}_{i-1}^T \textbf{W}_i = \vec{a}_i, \textrm{where } i \in {0, 1, 2, 3} \textrm{ (number of layers)}$$
+When $i=0$, $\vec{a}_{0}$ represents the input vector of observations e.g pixels in an image.
 
-Where,
-$$ \textbf{W} = [\vec{w}_1, \vec{w}_2, ... , \vec{w}_m] $$
+The matrix of network weights is
+$$\textbf{W}_i = [\vec{w}_{i1}, \vec{w}_{i2}, ... , \vec{w}_{im}], \textrm{where } i \in {1, 2, 3} \textrm{ (number of layers)}$$
 
-So, when looking at the operation for the first element of $\vec{a}_1^T$, the
-result is simply the dot product of $\vec{x}$ and $\vec{w}_1$ (the first vector
-of weights).
+To obtain the first element of $\vec{a}_i^T$, we take the dot product of $\vec{a_{i-1}}$ and
+$\vec{w}_{i1}$ (the first vector of weights).
 
 This process is then repeated until the input is reduced to a vector that is
 $k \times 1$ (one element for each group that we wish to classify each
@@ -47,12 +47,12 @@ network or not and to what magnitude is it propagated. Some of the activations
 used in the group's implementation are:
 
 1. **Rectified linear units** (ReLU): $R(z) = max(0, z)$;
-1. **Sigmoid**: $S(x) = \frac{1}{1+e^{-x}}$
+1. **Sigmoid**: $S(z) = \frac{1}{1+e^{-z}}$
 
 The final layer of the neural network uses a softmax activation function to
 create an output distribution over the classes the network attempts to classify.
 
-$$ \sigma(z)_j = \frac{e^{z_j}}{\sum_{i=1}^k e^{z_i}} for j = 1, ..., k$$
+$$ \sigma(z)_j = \frac{e^{z_j}}{\sum_{i=1}^k e^{z_i}} \textrm{ for }j = 1, ..., k$$
 
 The **softmax** takes each activation from the previous layer and divides it by the
 summed total of activations, which creates a value in the range [0, 1] for each
