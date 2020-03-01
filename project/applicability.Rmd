@@ -36,8 +36,6 @@ amount of enrolled users in the database that you are matching with.  Some uses 
 ![Facial recognition markers](./frm.jpg)
 </center>
 
-([paper](https://www.researchgate.net/publication/258312237_Face_Recognition_Using_Artificial_Neural_Networks))
-
 ### Object detection
 **Neural networks** can further be applied to not just 2D images, but also to real
 life objects for collision avoidance and obstacle detection when designing self-
@@ -59,5 +57,3 @@ network.
 <center>
 ![Robot arms picking paper from plastic](./recycling_robot.gif)
 </center>
-
-([article](https://towardsdatascience.com/how-to-build-an-image-classifier-for-waste-sorting-6d11d3c9c478), [paper](https://www.researchgate.net/publication/325626219_RecycleNet_Intelligent_Waste_Sorting_Using_Deep_Neural_Networks)).
