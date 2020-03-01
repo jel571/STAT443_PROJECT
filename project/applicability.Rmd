@@ -28,7 +28,6 @@ contained only in cancer research.
 </center>
 
 
-([paper](http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf))
 
 ### Facial recognition
 **Artificial neural networks** can also aid in facial recognition using the same
@@ -55,7 +54,7 @@ driving vehicles.  This offers real-time recognition (after training, of course!
 
 </center>
 
-([article](https://towardsdatascience.com/capsule-neural-networks-the-future-for-autonomous-vehicles-f97bc3f7918))
+
 
 ### Robotics
 We can also use this to better sort recyclables instead of relying
@@ -71,4 +70,4 @@ network.
 </center>
 
 
-([article](https://towardsdatascience.com/how-to-build-an-image-classifier-for-waste-sorting-6d11d3c9c478), [paper](https://www.researchgate.net/publication/325626219_RecycleNet_Intelligent_Waste_Sorting_Using_Deep_Neural_Networks)).
+
