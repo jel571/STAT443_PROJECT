@@ -19,7 +19,16 @@ Using **artificial neural networks**, we can greatly reduce the time spent on ha
 radiologists identify between benign and malignant calcifications and with
 better accuracy regarding early detection of breast cancer in mammograms.  This,
 of course, is applicable to other fields of medical science as well and is not
-contained only in cancer research.  ([paper](http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf))
+contained only in cancer research.  
+\
+<center>
+    
+![mammogram taken throughout four years](./AI_breasts)
+
+</center>
+
+
+([paper](http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf))
 
 ### Facial recognition
 **Artificial neural networks** can also aid in facial recognition using the same
