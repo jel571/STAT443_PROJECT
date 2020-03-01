@@ -25,7 +25,7 @@ Our group decided to use the simpler artificial neural network for ease of use.
 \
 <center>
 
-![Top figure: ANN, bottom figure: CNN](./ANNvsCNN.png){width=50%}
+![Top figure: ANN, bottom figure: CNN](./ann_vs_cnn.png)
 
 </center>
 
@@ -47,7 +47,7 @@ the model poorly fitting the data is much higher than if it were only using, say
 
 <center>
 
-![General example types of fit](./overfitting-logreg-ex.png)
+![General example types of fit](./overfitting.png)
 
 </center>
 
@@ -60,4 +60,4 @@ associating a probability from each image to a class. Although it is also an uns
 
 <center>
 
-![Diagram depicting several clusters](./Clusters.png)
+![Diagram depicting several clusters](./clusters.png)

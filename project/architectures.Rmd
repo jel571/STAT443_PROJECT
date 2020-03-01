@@ -38,7 +38,7 @@ connections (node connections that skip layers), recurrent relations (a node's
 output is placed back into the node), etc.
 
 <p>&nbsp;</p>
-![](./ANN.jpg)
+![](./ANN_512.jpg)
 <p>&nbsp;</p>
 
 As mentioned, the group decided to use a feed-forward neural network. The
