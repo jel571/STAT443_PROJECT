@@ -25,25 +25,22 @@ contained only in cancer research.  ([paper](http://downloads.hindawi.com/journa
 **Artificial neural networks** can also aid in facial recognition using the same
 process that we have on a much larger scale, although it can be limited by the
 amount of enrolled users in the database that you are matching with.  Some uses of facial recognition include access control, personal identification, security monitoring, and immersive gaming.
-\
+<p>&nbsp;</p>
+
 <center>
-
-![facial recognition markers](./frm.jpg){width=50%}
-
+![facial recognition markers](./frm.jpg)
 </center>
+
 ([paper](https://www.researchgate.net/publication/258312237_Face_Recognition_Using_Artificial_Neural_Networks))
 
 ### Object detection
 **Neural networks** can further be applied to not just 2D images, but also to real
 life objects for collision avoidance and obstacle detection when designing self-
 driving vehicles.  This offers real-time recognition (after training, of course!) while driving to help identify potential accidents.
-
-\
+<p>&nbsp;</p>
 
 <center>
-
-![Computer rendering of self-driving car and surroundings](object_detection.gif){width=50%} 
-
+![Computer rendering of self-driving car and surroundings](object_detection.gif)
 </center>
 
 ([article](https://towardsdatascience.com/capsule-neural-networks-the-future-for-autonomous-vehicles-f97bc3f7918))
@@ -54,12 +51,10 @@ on human eye detection.  The speed of which recyclables are sorted can also
 increase with the implementation of the **convolutional neural network**, which we
 mentioned was better suited to image recognition than an artificial neural
 network.
+<p>&nbsp;</p>
 
 <center>
-
 ![robot arms picking paper from plastic](./recycling_robot.gif)
-
 </center>
-
 
 ([article](https://towardsdatascience.com/how-to-build-an-image-classifier-for-waste-sorting-6d11d3c9c478), [paper](https://www.researchgate.net/publication/325626219_RecycleNet_Intelligent_Waste_Sorting_Using_Deep_Neural_Networks)).

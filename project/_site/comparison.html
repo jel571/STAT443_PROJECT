@@ -329,41 +329,43 @@ $(document).ready(function () {
 <h2></h2>
 <div id="convnet" class="section level3">
 <h3>ConvNet</h3>
-<p>An algorithm that would have been <em>better suited</em> to identifying images would be the <strong>convolutional neural network</strong> (CNN or ConvNet) which specializes in analyzing visuals and reduces the computational workload while retaining necessary information. The CNN does this by only having the last layer be fully connected (whereas the ANN is fully connected in all layers) and pools layers to streamline any underlying computation. Our group decided to use the simpler artificial neural network for ease of use.</p>
-<br />
-
+An algorithm that would have been <em>better suited</em> to identifying images would be the <strong>convolutional neural network</strong> (CNN or ConvNet) which specializes in analyzing visuals and reduces the computational workload while retaining necessary information. The CNN does this by only having the last layer be fully connected (whereas the ANN is fully connected in all layers) and pools layers to streamline any underlying computation. Our group decided to use the simpler artificial neural network for ease of use.
+<p>
+ 
+</p>
 <center>
 <div class="figure">
 <img src="ann_vs_cnn.png" alt="Top figure: ANN, bottom figure: CNN" />
 <p class="caption">Top figure: ANN, bottom figure: CNN</p>
 </div>
 </center>
-<p><br />
-<br />
+<p>
+ 
+</p>
+<p>
+ 
 </p>
 </div>
 <div id="logistic-regression" class="section level3">
 <h3>Logistic Regression</h3>
 <p>By comparison to the usage of <strong>logistic regression</strong> which is analogous to linear regression (since logistic regression is a special case of the generalized linear model), an artificial neural network can handle more than a dichotomous outcome.</p>
-<p><strong>Multivariate logistic regression</strong> could also work for image recognition, but a major downfall of it is that the more parameters there are, the more likely it is to <em>overfit</em> the data. With a dataset in the tens of thousands, the chances of the model poorly fitting the data is much higher than if it were only using, say 10 parameters.<br />
+<strong>Multivariate logistic regression</strong> could also work for image recognition, but a major downfall of it is that the more parameters there are, the more likely it is to <em>overfit</em> the data. With a dataset in the tens of thousands, the chances of the model poorly fitting the data is much higher than if it were only using, say 10 parameters.
+<p>
+ 
 </p>
 <center>
-<div class="figure">
 <img src="overfitting.png" alt="General example types of fit" />
-<p class="caption">General example types of fit</p>
-</div>
 </center>
 </div>
 <div id="clustering" class="section level3">
 <h3>Clustering</h3>
-<p>Algorithms for <strong>cluster analysis</strong> could also work but they rely more on finding similarities between subjects rather than learning on its own and associating a probability from each image to a class. Although it is also an unsupervised learning method, the algorithms separate observations based on predetermined properties. These clusters can then be considered the equivalent to the ANN’s “classes”. The process of calculating weights and finding the best suited one is also similar to that of an ANN. However, we found that cluster analysis algorithms are less applicable in our case as it is less about classifiying images and more about grouping observations into undefined categories.</p>
-<p><br />
+Algorithms for <strong>cluster analysis</strong> could also work but they rely more on finding similarities between subjects rather than learning on its own and associating a probability from each image to a class. Although it is also an unsupervised learning method, the algorithms separate observations based on predetermined properties. These clusters can then be considered the equivalent to the ANN’s “classes”. The process of calculating weights and finding the best suited one is also similar to that of an ANN. However, we found that cluster analysis algorithms are less applicable in our case as it is less about classifiying images and more about grouping observations into undefined categories.
+<p>
+ 
 </p>
 <center>
-<div class="figure">
 <img src="clusters.png" alt="Diagram depicting several clusters" />
-<p class="caption">Diagram depicting several clusters</p>
-</div>
+</center>
 </div>
 </div>
 

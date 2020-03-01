@@ -134,10 +134,10 @@ With all of this set up, we are finally able to train our neural network. The
 "epochs" option determine how many cycles we let the network train upon. Here,
 we will train the network for 50 epochs. However, after 25 epochs, we notice
 the performance of the network degrading on the validation dataset, which
-is potentially caused by overfitting. Twenty fice epochs should be sufficient
+is potentially caused by overfitting. Twenty five epochs should be sufficient
 for getting a network that performs well. We can obtain metrics such
-as accuracy and loss while the netowkr is training; this option can be turned
-off by setting the keyword argument **verbose=FALSE**.
+as accuracy and loss while the network is training; this option can be turned
+off by setting the keyword argument **view_metrics=FALSE**.
 
 ```{r}
 epochs <- 50

@@ -399,7 +399,7 @@ model %&gt;%
 <pre class="r"><code>model %&gt;% compile(optimizer=&#39;adam&#39;,
                   loss=&#39;sparse_categorical_crossentropy&#39;,
                   metrics=c(&#39;accuracy&#39;))</code></pre>
-<p>With all of this set up, we are finally able to train our neural network. The “epochs” option determine how many cycles we let the network train upon. Here, we will train the network for 50 epochs. However, after 25 epochs, we notice the performance of the network degrading on the validation dataset, which is potentially caused by overfitting. Twenty fice epochs should be sufficient for getting a network that performs well. We can obtain metrics such as accuracy and loss while the netowkr is training; this option can be turned off by setting the keyword argument <strong>verbose=FALSE</strong>.</p>
+<p>With all of this set up, we are finally able to train our neural network. The “epochs” option determine how many cycles we let the network train upon. Here, we will train the network for 50 epochs. However, after 25 epochs, we notice the performance of the network degrading on the validation dataset, which is potentially caused by overfitting. Twenty five epochs should be sufficient for getting a network that performs well. We can obtain metrics such as accuracy and loss while the network is training; this option can be turned off by setting the keyword argument <strong>view_metrics=FALSE</strong>.</p>
 <pre class="r"><code>epochs &lt;- 50
 history &lt;- model %&gt;% fit(train_images, train_labels,
                          epochs=epochs,
