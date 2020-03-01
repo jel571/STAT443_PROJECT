@@ -19,7 +19,12 @@ Using **artificial neural networks**, we can greatly reduce the time spent on ha
 radiologists identify between benign and malignant calcifications and with
 better accuracy regarding early detection of breast cancer in mammograms.  This,
 of course, is applicable to other fields of medical science as well and is not
-contained only in cancer research.  ([paper](http://downloads.hindawi.com/journals/cmmm/2017/2610628.pdf))
+contained only in cancer research.  
+<p>&nbsp;</p>
+
+<center>
+![Mammogram taken throughout four years](./breast_scan.png)
+</center>
 
 ### Facial recognition
 **Artificial neural networks** can also aid in facial recognition using the same
@@ -28,7 +33,7 @@ amount of enrolled users in the database that you are matching with.  Some uses 
 <p>&nbsp;</p>
 
 <center>
-![facial recognition markers](./frm.jpg)
+![Facial recognition markers](./frm.jpg)
 </center>
 
 ([paper](https://www.researchgate.net/publication/258312237_Face_Recognition_Using_Artificial_Neural_Networks))
@@ -43,8 +48,6 @@ driving vehicles.  This offers real-time recognition (after training, of course!
 ![Computer rendering of self-driving car and surroundings](object_detection.gif)
 </center>
 
-([article](https://towardsdatascience.com/capsule-neural-networks-the-future-for-autonomous-vehicles-f97bc3f7918))
-
 ### Robotics
 We can also use this to better sort recyclables instead of relying
 on human eye detection.  The speed of which recyclables are sorted can also
@@ -54,7 +57,7 @@ network.
 <p>&nbsp;</p>
 
 <center>
-![robot arms picking paper from plastic](./recycling_robot.gif)
+![Robot arms picking paper from plastic](./recycling_robot.gif)
 </center>
 
 ([article](https://towardsdatascience.com/how-to-build-an-image-classifier-for-waste-sorting-6d11d3c9c478), [paper](https://www.researchgate.net/publication/325626219_RecycleNet_Intelligent_Waste_Sorting_Using_Deep_Neural_Networks)).
